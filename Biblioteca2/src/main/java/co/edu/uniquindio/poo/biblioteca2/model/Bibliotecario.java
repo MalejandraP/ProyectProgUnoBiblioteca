@@ -10,7 +10,8 @@ public class Bibliotecario extends Empleado{
     private List<Docente> listDocentes;
     private List<Visitante> listVisitantes;
     private List<Prestamo> listPrestamos;
-    private List<Libro> listLibros;
+
+    private List<Usuario> listUsuarios;
     private Prestamo prestamo;
     private Biblioteca biblioteca;
 
@@ -31,6 +32,7 @@ public class Bibliotecario extends Empleado{
         this.prestamo = prestamo;
         this.biblioteca = biblioteca;
     }
+
 
 
 
@@ -91,6 +93,26 @@ public class Bibliotecario extends Empleado{
     }
 
     /**
+     * Metodo para hallar el o los libros más solicitados (que tengan mayot cantidad de solicitudes)
+     * @return
+     */
+    public List<Libro> reporteLibroMasSolicitado(){
+        List<Libro> librosMasSolicitados = new ArrayList<>();
+        int maxCantidadVecesPrestado=0;
+        for (int i=0; i<biblioteca.getListLibros().size();i++){
+           if(biblioteca.getListLibros().get(i).getSolicitudes()>maxCantidadVecesPrestado){
+               maxCantidadVecesPrestado=biblioteca.getListLibros().get(i).getSolicitudes();
+           }
+        }
+        for(int i=0;i<biblioteca.getListLibros().size();i++){
+            if(biblioteca.getListLibros().get(i).getSolicitudes()==maxCantidadVecesPrestado){
+                librosMasSolicitados.add(biblioteca.getListLibros().get(i));
+            }
+        }
+        return librosMasSolicitados;
+    }
+
+    /**
      * METODO PARA GENERAR LA LISTA DE LIBROS QUE ESTAN PRESTADOS
      */
     public List<Libro> reporteLibrosPrestados(){
@@ -104,13 +126,48 @@ public class Bibliotecario extends Empleado{
     }
 
     /**
-     * METODO PARA GENERAR REPORTE DE LOS USUARIOS QUE TIENEN DEUDAS, NECESITO LA FECHA DE DEVOLUCION O FECHA EN SI
-     * NO SE
+     *  Metodo para calcular la deuda en total de la lista de prestamos que tiene cada usuario
      */
-    public List<Usuario> reporteUsuariosDeuddores(){
+    public double calculaDeudaTotal(String identificacion){
+        double deudaTotal = 0;
+        Usuario u = biblioteca.buscarUsuario(identificacion);
+        if(u instanceof Estudiante){
+            Estudiante e = (Estudiante) u;
+            List<Prestamo> prestamosDeU = e.getListPrestamos();
+            for (Prestamo p : prestamosDeU){
+                if (p.getDeuda() >0){
+                    deudaTotal += p.getDeuda();
+                }
+            }
+        }
+        if(u instanceof Docente){
+            Docente d = (Docente) u;
+            List<Prestamo> prestamosDeU = d.getListPrestamos();
+            for (Prestamo p : prestamosDeU){
+                if (p.getDeuda() >0){
+                    deudaTotal += p.getDeuda();
+                }
+            }
+        }
+        return deudaTotal;
+    }
+
+    /**
+     * Metodo para generar reporte de la lista de usuarios con una deuda mayor a 0
+     * @return
+     */
+    public List<Usuario> reporteUsuariosDeudores() {
         List<Usuario> listUsuariosDeudores = new ArrayList<>();
+        for (Usuario u : listUsuarios){
+            String identificacion = u.getIdentificacion();
+            if(calculaDeudaTotal(identificacion) > 0){
+                listUsuariosDeudores.add(u);
+            }
+        }
         return listUsuariosDeudores;
     }
+
+
     /**
      * Metodo para agregar un usuario a la lista, registrarlo
      * BOTON REGISTRAR USUARIO

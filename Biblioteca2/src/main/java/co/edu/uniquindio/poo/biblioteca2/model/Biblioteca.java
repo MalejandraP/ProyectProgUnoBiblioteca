@@ -14,9 +14,11 @@ public class Biblioteca {
     private List<Visitante> listVisitantes;
     private List<Bibliotecario> listBibliotecarios;
     private List<Administrador> listAdministradores;
+    private int empleadoEliminados;
+    private List<Libro>listLibros;
 
 
-    public Biblioteca(String nombre, String direccion, Prestamo prestamo) {
+    public Biblioteca(String nombre, String direccion,int empleadosEliminados, Prestamo prestamo) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.listLibrosDigitales = new ArrayList<>();
@@ -27,6 +29,17 @@ public class Biblioteca {
         this.listVisitantes = new ArrayList<>();
         this.listBibliotecarios = new ArrayList<>();
         this.listAdministradores = new ArrayList<>();
+        this.empleadoEliminados= 0;
+        this.listLibros = new ArrayList<>();
+    }
+    public void actualizarListaLibrosDigitales(){
+        listLibros.clear();
+        if(listLibrosDigitales!=null){
+            listLibros.addAll(listLibrosDigitales);
+        }
+        if(listLibrosFisicos!=null){
+            listLibros.addAll(listLibrosFisicos);
+        }
     }
 
     /**
@@ -52,7 +65,7 @@ public class Biblioteca {
             return;
         }
         Prestamo prestamo = new Prestamo(fecha, fechaMaximaDevolucion, fechaDevolucion, deuda, devuelto,id, libro, usuario);
-        agregarPrestamo(id, prestamo);// EXPLICAR QUE ESTOY HACIENDO    
+        agregarPrestamo(id, prestamo);
         if (usuario instanceof Docente) {
             Docente docente = (Docente) usuario;
             if (!docente.puedePrestar(prestamo)) {
@@ -172,6 +185,15 @@ public class Biblioteca {
         return null;
     }
 
+    public Prestamo buscarPrestamo(String id){
+        for (Prestamo p : listPrestamos) {
+            if (p.getId().equalsIgnoreCase(id)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     public boolean eliminarLibro(String titulo) {
         boolean libroEliminado = false;
         for (LibroDigital libroDigital : listLibrosDigitales) {
@@ -198,6 +220,7 @@ public class Biblioteca {
             if (b.getIdentificacion().equals(identificacion)) {
                 listBibliotecarios.remove(b);
                 centinela = true;
+                empleadoEliminados++;
                 break;
             }
         }
@@ -205,6 +228,7 @@ public class Biblioteca {
             if (a.getIdentificacion().equals(identificacion)) {
                 listAdministradores.remove(a);
                 centinela = true;
+                empleadoEliminados++;
                 break;
             }
         }
@@ -371,8 +395,8 @@ public class Biblioteca {
     public boolean agregarPrestamo(String id,Prestamo prestamo) {
         boolean centinela = false;
         for (Prestamo p: listPrestamos) {
-            if (p.getId().equals(id)) {
-                listPrestamos.add(prestamo);
+            if (!verificarPrestamo(id)) {
+                listPrestamos.add(p);
                 centinela = true;
                 break;
             }
@@ -525,6 +549,14 @@ public class Biblioteca {
 
     public void setListAdministradores(List<Administrador> listAdministradores) {
         this.listAdministradores = listAdministradores;
+    }
+
+    public List<Libro> getListLibros() {
+        return listLibros;
+    }
+
+    public void setListLibros(List<Libro> listLibros) {
+        this.listLibros = listLibros;
     }
 
     /**

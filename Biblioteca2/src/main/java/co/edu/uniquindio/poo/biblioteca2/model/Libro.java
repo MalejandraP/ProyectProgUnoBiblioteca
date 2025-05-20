@@ -2,13 +2,15 @@ package co.edu.uniquindio.poo.biblioteca2.model;
 
 public class Libro {
     private String titulo, autor, genero, anioPublicacion;
+    private int solicitudes;
     private EstadoLibro estado;
 
-    public Libro(String titulo, String autor, String genero, String anioPublicacion, EstadoLibro estado) {
+    public Libro(String titulo, String autor, String genero, String anioPublicacion,int solicitudes, EstadoLibro estado) {
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;
         this.anioPublicacion = anioPublicacion;
+        this.solicitudes = solicitudes;
         this.estado = estado;
         assert titulo != null;
         assert autor != null;
@@ -33,6 +35,7 @@ public class Libro {
      */
     public void prestar() {
         estado.equals(EstadoLibro.PRESTADO);
+        solicitudes++;
     }
 
     /**
@@ -78,5 +81,13 @@ public class Libro {
 
     public void setAnioPublicacion(String anioPublicacion) {
         this.anioPublicacion = anioPublicacion;
+    }
+
+    public int getSolicitudes() {
+        return solicitudes;
+    }
+
+    public void setSolicitudes(int solicitudes) {
+        this.solicitudes = solicitudes;
     }
 }

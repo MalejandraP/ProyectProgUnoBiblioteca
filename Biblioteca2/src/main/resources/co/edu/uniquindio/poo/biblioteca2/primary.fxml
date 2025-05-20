@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.Primary">
+   <children>
+      <Label layoutX="79.0" layoutY="53.0" text="Bienvenido a la biblioteca UQ" textFill="#37508a">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font></Label>
+      <Label layoutX="203.0" layoutY="145.0" text="Ingrese su Identificación:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="202.0" layoutY="188.0" prefHeight="25.0" prefWidth="197.0" />
+      <Button layoutX="197.0" layoutY="323.0" mnemonicParsing="false" style="-fx-background-color: #37508a;" text="Visualizar lista de libros" textFill="#f5f5f8">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="229.0" layoutY="226.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="143.0" style="-fx-background-color: #37508a;" text="Ingresar" textFill="#f5f0f0" />
+   </children>
+</AnchorPane>
