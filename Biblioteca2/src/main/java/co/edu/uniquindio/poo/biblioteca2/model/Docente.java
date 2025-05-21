@@ -8,8 +8,8 @@ public class Docente extends Usuario implements GestionPrestamo{
     private String credencial;
     private List<Prestamo> listPrestamos;
 
-    public Docente(String nombre, String identificacion, String genero, String correo, String telefono, int edad, String credencial) {
-        super(nombre, identificacion, genero, correo, telefono, edad);
+    public Docente(String nombre, String identificacion, String genero, String correo, String telefono, int edad,Tipo tipo, String credencial) {
+        super(nombre, identificacion, genero, correo, telefono, edad, tipo);
         this.credencial = credencial;
         this.listPrestamos = new ArrayList<>();
         assert credencial != null;

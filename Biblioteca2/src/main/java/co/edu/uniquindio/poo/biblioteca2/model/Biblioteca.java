@@ -18,7 +18,7 @@ public class Biblioteca {
     private List<Libro>listLibros;
 
 
-    public Biblioteca(String nombre, String direccion,int empleadosEliminados, Prestamo prestamo) {
+    public Biblioteca(String nombre, String direccion,int empleadosEliminados) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.listLibrosDigitales = new ArrayList<>();
@@ -167,6 +167,10 @@ public class Biblioteca {
             if (docente.getIdentificacion().equalsIgnoreCase(identificacion)) {
                 return docente;
             }
+        }for (Visitante visitante : listVisitantes) {
+            if (visitante.getIdentificacion().equalsIgnoreCase(identificacion)) {
+                return visitante;
+            }
         }
         return null;
     }
@@ -270,6 +274,7 @@ public class Biblioteca {
                 e.setCorreo(actualizado.getCorreo());
                 e.setTelefono(actualizado.getTelefono());
                 e.setEdad(actualizado.getEdad());
+                e.setTipo(actualizado.getTipo());
                 e.setCredencial(((Estudiante) actualizado).getCredencial()); // EXPLICAR QUE ES ESTO
                 centinela = true;
                 break;
@@ -283,6 +288,7 @@ public class Biblioteca {
                 d.setCorreo(actualizado.getCorreo());
                 d.setTelefono(actualizado.getTelefono());
                 d.setEdad(actualizado.getEdad());
+                d.setTipo(actualizado.getTipo());
                 d.setCredencial(((Docente) actualizado).getCredencial());
                 centinela = true;
                 break;
@@ -296,6 +302,7 @@ public class Biblioteca {
                 v.setCorreo(actualizado.getCorreo());
                 v.setTelefono(actualizado.getTelefono());
                 v.setEdad(actualizado.getEdad());
+                v.setTipo(actualizado.getTipo());
                 centinela = true;
                 break;
             }

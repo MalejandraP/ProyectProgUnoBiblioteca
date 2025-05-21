@@ -31,8 +31,5 @@ public class Administrador extends Empleado{
         return biblioteca.actualizarEmpleado(identificacion, actual);
     }
 
-    public List<Prestamo> reportePrestamosSemana(LocalDate fecha, ){
-
-    }
 
 }

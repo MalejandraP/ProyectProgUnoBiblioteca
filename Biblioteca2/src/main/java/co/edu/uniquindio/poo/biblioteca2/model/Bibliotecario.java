@@ -10,7 +10,7 @@ public class Bibliotecario extends Empleado{
     private List<Docente> listDocentes;
     private List<Visitante> listVisitantes;
     private List<Prestamo> listPrestamos;
-
+    private List<Libro> listLibros;
     private List<Usuario> listUsuarios;
     private Prestamo prestamo;
     private Biblioteca biblioteca;
@@ -31,6 +31,7 @@ public class Bibliotecario extends Empleado{
         super(nombre, identificacion, genero, correo, telefono, edad, sueldo,cargo);
         this.prestamo = prestamo;
         this.biblioteca = biblioteca;
+        this.listLibros = listLibros;
     }
 
 
@@ -294,6 +295,30 @@ public class Bibliotecario extends Empleado{
 
     public void setListVisitantes(List<Visitante> listVisitantes) {
         this.listVisitantes = listVisitantes;
+    }
+
+    public List<Libro> getListLibros() {
+        return listLibros;
+    }
+
+    public void setListLibros(List<Libro> listLibros) {
+        this.listLibros = listLibros;
+    }
+
+    public List<Usuario> getListUsuarios() {
+        return listUsuarios;
+    }
+
+    public void setListUsuarios(List<Usuario> listUsuarios) {
+        this.listUsuarios = listUsuarios;
+    }
+
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
+    }
+
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
     }
 
     @Override
