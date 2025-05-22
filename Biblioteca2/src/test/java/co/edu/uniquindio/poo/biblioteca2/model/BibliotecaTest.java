@@ -34,11 +34,15 @@ public class BibliotecaTest {
     void buscarUsuario() {
         Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO,",2);
         Estudiante estudiante1= new Estudiante("jUAN","123","nobinario", "@wre","312",12, Tipo.ESTUDIANTE, "123");
-        assertEquals(123,biblioteca.buscarUsuario(estudiante1.getIdentificacion()));
+        biblioteca.agregarUsuario(estudiante1.getIdentificacion);
+        assertEquals(estudiante1,biblioteca.buscarUsuario(estudiante1.getIdentificacion()));
     }
 
     @Test
     void buscarEmpleado() {
+        Biblioteca biblioteca= new Biblioteca("universidad de los andes","Laureles",2);
+        Empleado empleado1= new Empleado("")
+        biblioteca.agregarEmpleado(estudiante1.getIdentificacion);
     }
 
     @Test
