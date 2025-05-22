@@ -28,6 +28,8 @@ public class BibliotecaTest {
 
     @Test
     void buscarLibro() {
+        Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO,",2);
+        Libro libro1= new LibroDigital("UQ","bARRIO ALTO,",2);)
     }
 
     @Test
