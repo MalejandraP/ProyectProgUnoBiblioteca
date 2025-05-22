@@ -32,7 +32,7 @@ public class Biblioteca {
         this.empleadoEliminados= 0;
         this.listLibros = new ArrayList<>();
     }
-    public void actualizarListaLibrosDigitales(){
+    public void actualizarListaLibros(){
         listLibros.clear();
         if(listLibrosDigitales!=null){
             listLibros.addAll(listLibrosDigitales);
