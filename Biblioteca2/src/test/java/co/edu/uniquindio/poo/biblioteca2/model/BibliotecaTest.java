@@ -29,7 +29,7 @@ public class BibliotecaTest {
     @Test
     void buscarLibro() {
         Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO,",2);
-        Libro libro1= new LibroDigital("UQ","bARRIO ALTO,",2);)
+        Libro libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE, )
     }
 
     @Test
