@@ -41,7 +41,7 @@ public class BibliotecaTest {
     @Test
     void buscarEmpleado() {
         Biblioteca biblioteca= new Biblioteca("universidad de los andes","Laureles",2);
-        Empleado bibliotecario4= new Empleado("Alejo", "167", "masculino", "alejo@2", "3125", "18")
+        Empleado bibliotecario4= new Empleado("Alejo", "167", "masculino", "alejo@2", "3125", 18, 2.5, Cargo.BIBLIOTECARIO,)
         biblioteca.agregarEmpleado(estudiante1.getIdentificacion);
     }
 
