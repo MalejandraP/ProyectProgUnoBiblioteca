@@ -1,12 +1,11 @@
 package co.edu.uniquindio.poo.biblioteca2;
 
-import co.edu.uniquindio.poo.biblioteca2.model.Biblioteca;
-import co.edu.uniquindio.poo.biblioteca2.model.Estudiante;
-import co.edu.uniquindio.poo.biblioteca2.model.Tipo;
-import co.edu.uniquindio.poo.biblioteca2.model.Usuario;
+import co.edu.uniquindio.poo.biblioteca2.controller.PrimaryController;
+import co.edu.uniquindio.poo.biblioteca2.model.*;
 import co.edu.uniquindio.poo.biblioteca2.viewController.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -29,14 +28,17 @@ public class App extends Application {
     }
 
 
-    private void openViewPrincipal() {
+    public void openViewPrincipal() {
         inicializarData();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource("primary.fxml"));
-            VBox rootLayout = (VBox) loader.load();
+            AnchorPane rootLayout = (AnchorPane) loader.load();
             PrimaryViewController primaryViewController = loader.getController();
+            PrimaryController primaryController = new PrimaryController(biblioteca);
+            primaryViewController.setPrimaryController(primaryController);
             primaryViewController.setApp(this);
+
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -137,8 +139,63 @@ public class App extends Application {
         }
     }
 
+    public void openCrudListaLibros() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("crudListaLibros.fxml"));
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+            ListaLibrosViewController listaLibrosViewController = loader.getController();
+            listaLibrosViewController.setApp(this);
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void openCrudLibroFisico(LibroFisico libro) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("crudLibroFisico.fxml"));
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+            LibroFisicoViewController libroFisicoViewController = loader.getController();
+            libroFisicoViewController.setApp(this);
+            libroFisicoViewController.setLibro(libro);
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void openCrudLibroDigital(LibroDigital libro) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("crudLibroDigital.fxml"));
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+            LibroDigitalViewController libroDigitalViewController = loader.getController();
+            libroDigitalViewController.setApp(this);
+            libroDigitalViewController.setLibro(libro);
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
     public void inicializarData(){
         Usuario estudiante = new Estudiante("Ramon", "12345678", "Masculino", "<EMAIL>", "666666666", 20, Tipo.ESTUDIANTE, "111");
+        Libro libro = new LibroDigital("El principito", "Antoine de Saint Exupéry", "Masc", "1943", 2, EstadoLibro.DISPONIBLE, "omg");
         biblioteca.agregarUsuario(estudiante.getIdentificacion());
+        biblioteca.agregarLibro(libro.getTitulo());
     }
 }

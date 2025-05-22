@@ -7,9 +7,17 @@ import co.edu.uniquindio.poo.biblioteca2.model.*;
 import static co.edu.uniquindio.poo.biblioteca2.App.biblioteca;
 
 public class PrimaryController {
-
-
+    private Biblioteca biblioteca;
     private App app;
+
+    public PrimaryController(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
+    }
+    public void setApp(App app) {
+        this.app = app;
+    }
+
+
 
     public boolean redireccionarSegunId(String id){
         Empleado empleado = biblioteca.buscarEmpleado(id);
@@ -41,6 +49,11 @@ public class PrimaryController {
             }
         }
         return false;
+    }
+
+    public boolean redireccionarListaLibros(){
+        app.openCrudListaLibros();
+        return true;
     }
 
 }

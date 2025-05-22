@@ -90,4 +90,5 @@ public class Libro {
     public void setSolicitudes(int solicitudes) {
         this.solicitudes = solicitudes;
     }
+
 }
