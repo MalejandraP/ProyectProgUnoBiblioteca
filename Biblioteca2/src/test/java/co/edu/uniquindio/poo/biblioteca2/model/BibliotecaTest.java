@@ -31,12 +31,17 @@ public class BibliotecaTest {
 
     @Test
     void agregarLibro() {
+        Biblioteca biblioteca= new Biblioteca("Harvard","La Gran Manzana");
+        LibroFisico libro2= new LibroFisico("Cien años de soledad", "Gabo", "historia", "1980", 4, EstadoLibro.DISPONIBLE, "librosSuperPro", "carrera 8", "350");
+        biblioteca.agregarLibro(libro2.getTitulo);
+        assertFalse(biblioteca.agregarLibro(libro2.getTitulo));
+        
     }
 
     @Test
     void buscarLibro() {
         Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO")
-        Libro libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
+        LibroDigital libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
         biblioteca.agregarLibro(libro1.getIdentificacion);
         assertNotNull(libro1, biblioteca.buscarLibro(libro1.getTitulo));
     }
