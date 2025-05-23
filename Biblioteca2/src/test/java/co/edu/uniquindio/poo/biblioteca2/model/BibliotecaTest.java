@@ -74,6 +74,10 @@ public class BibliotecaTest {
 
     @Test
     void eliminarLibro() {
+        Biblioteca biblioteca= new Biblioteca("Jorge Isaacs","Quimbaya")
+        LibroDigital libro3= new LibroDigital("Hamlet", "William Shakespaeare", "Drama", "1560", 10, EstadoLibro.DISPONIBLE,"https.hamlet.com");
+        biblioteca.agregarLibro(libro3.getIdentificacion);
+        assertTrue(biblioteca.eliminarLibro(libro3.getIdentificacion));
     }
 
     @Test
