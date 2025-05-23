@@ -106,6 +106,13 @@ public class BibliotecaTest {
 
     @Test
     void agregarPrestamo() {
+        Biblioteca biblioteca= new Biblioteca("Sueños", "La rue morgue");
+        Estudiante estudiante1= new Estudiante("jUAN","123","nobinario", "@wre","312",12, Tipo.ESTUDIANTE, "123");
+        Libro libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
+        Prestamo prestamo2= new Prestamo(15/05/2025,02/06/2025,28/05/2025,0.0, True, 123, libro1, estudiante1);
+        biblioteca.agregarPrestamo(prestamo2.getId);
+        assertFalse(biblioteca.agregarPrestamo(prestamo2.getId))
+        
     }
 
     @Test
