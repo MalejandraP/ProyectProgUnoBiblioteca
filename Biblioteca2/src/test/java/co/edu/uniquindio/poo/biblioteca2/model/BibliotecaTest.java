@@ -17,13 +17,16 @@ public class BibliotecaTest {
     void agregarEmpleado() {
         Biblioteca biblioteca= new Biblioteca("La Nacional","kenedy");
         Empleado bibliotecario1= new Bibliotecario("Rafael", "875", "masculino", "rafael@2", "3198", 24, 300, Cargo.BIBLIOTECARIO);
-        aasertTrue(True,biblioteca.agregarEmpleado(bibliotecario1));
+        aasertTrue(biblioteca.agregarEmpleado(bibliotecario1));
         
 
     }
 
     @Test
     void agregarUsuario() {
+        Biblioteca biblioteca= new Biblioteca("Howard","Clementina");
+        Docente docente2=new Docente("Carlos", "524", "masculino","carlos@", "314", 35, tipo.DOCENTE, "547");
+        assertTrue(biblioteca.agregarUsuario(docente2.getIdentificacion);
     }
 
     @Test
@@ -51,15 +54,17 @@ public class BibliotecaTest {
         Biblioteca biblioteca= new Biblioteca("universidad de los andes","Laureles");
         Empleado bibliotecario4= new Bibliotecario("Alejo", "167", "masculino", "alejo@2", "3125", 18, 2.5, Cargo.BIBLIOTECARIO);
         biblioteca.agregarEmpleado(biblitecario4.getIdentificacion);
-        assertNotNull(bibliotecario4.buscarEmpleado(bibliotecario4.getIdentificacion()));
+        assertNotNull(bibliotecario4, biblioteca.buscarEmpleado(bibliotecario4.getIdentificacion()));
     }
 
     @Test
     void buscarPrestamo() {
         Biblioteca biblioteca= new Biblioteca("La Gran Colombia","Rocio");
-        Prestamo prestamo
-        biblioteca.agregarEmpleado(biblitecario4.getIdentificacion);
-        assertNotNull(bibliotecario4.buscarEmpleado(bibliotecario4.getIdentificacion()));
+        Estudiante estudiante1= new Estudiante("jUAN","123","nobinario", "@wre","312",12, Tipo.ESTUDIANTE, "123");
+        Libro libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
+        Prestamo prestamo1= new Prestamo(22/05/2025,02/06/2025,28/05/2025,0.0, True, 123, libro1, estudiante1);
+        biblioteca.agregarPrestamo(prestamo1.getId);
+        assertEquals(prestamo1, biblioteca.buscarPrestamo(prestamo1.getId));
     }
 
     @Test
