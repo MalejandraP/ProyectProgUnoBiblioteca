@@ -18,7 +18,7 @@ public class Biblioteca {
     private List<Libro>listLibros;
 
 
-    public Biblioteca(String nombre, String direccion,int empleadosEliminados) {
+    public Biblioteca(String nombre, String direccion) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.listLibrosDigitales = new ArrayList<>();
