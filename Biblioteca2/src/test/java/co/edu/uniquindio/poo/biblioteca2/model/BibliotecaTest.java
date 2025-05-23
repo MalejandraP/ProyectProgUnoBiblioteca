@@ -28,7 +28,7 @@ public class BibliotecaTest {
 
     @Test
     void buscarLibro() {
-        Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO,",2);
+        Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO")
         Libro libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
         biblioteca.agregarLibro(libro1.getIdentificacion);
         assertNotNull(libro1, biblioteca.buscarLibro(libro1.getTitulo));
@@ -36,7 +36,7 @@ public class BibliotecaTest {
 
     @Test
     void buscarUsuario() {
-        Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO,",2);
+        Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO,");
         Estudiante estudiante1= new Estudiante("jUAN","123","nobinario", "@wre","312",12, Tipo.ESTUDIANTE, "123");
         biblioteca.agregarUsuario(estudiante1.getIdentificacion);
         assertEquals(estudiante1,biblioteca.buscarUsuario(estudiante1.getIdentificacion()));
