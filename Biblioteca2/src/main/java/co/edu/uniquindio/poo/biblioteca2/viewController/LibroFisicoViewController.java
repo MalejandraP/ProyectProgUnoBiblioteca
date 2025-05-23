@@ -53,4 +53,8 @@ public class LibroFisicoViewController {
     void onRegresar(){
         libroFisicoController.regresarPaginaPrincipal();
     }
+
+    public void setLibroFisicoController(LibroFisicoController libroFisicoController) {
+        this.libroFisicoController = libroFisicoController;
+    }
 }

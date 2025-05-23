@@ -11,6 +11,8 @@ public class Empleado extends Persona {
         this.cargo = cargo;
     }
 
+
+
     public Cargo getCargo() {
         return cargo;
     }

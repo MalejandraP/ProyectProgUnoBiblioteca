@@ -10,8 +10,13 @@ import javafx.scene.control.TableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class ListaLibrosViewController {
-    ListaLibrosController listaLibrosController;
+    private ListaLibrosController listaLibrosController;
+
+    public void setListaLibrosController(ListaLibrosController listaLibrosController) {
+        this.listaLibrosController = listaLibrosController;
+    }
 
     @FXML
     private ResourceBundle resources;

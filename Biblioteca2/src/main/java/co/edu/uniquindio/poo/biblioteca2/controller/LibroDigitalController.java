@@ -9,4 +9,8 @@ public class LibroDigitalController {
     public void regresarPaginaPrincipal() {
         app.openViewPrincipal();
     }
+
+    public void setApp(App app) {
+        this.app = app;
+    }
 }

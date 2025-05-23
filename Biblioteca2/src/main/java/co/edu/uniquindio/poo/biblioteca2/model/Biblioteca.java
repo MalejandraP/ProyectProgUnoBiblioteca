@@ -89,54 +89,92 @@ public class Biblioteca {
         }
     }
 
-    public boolean agregarEmpleado(String identificacion) {
-        Empleado empleado = buscarEmpleado(identificacion);
+    public boolean agregarEmpleado(String nombre, String identificacion, String genero, String correo, String telefono, int edad, double sueldo, Cargo cargo) {
         boolean centinela = false;
-        if (empleado instanceof Bibliotecario){
-            if (!verificarEmpleado(empleado.getIdentificacion())) {
-                listBibliotecarios.add((Bibliotecario) empleado);
+        if (!verificarEmpleado(identificacion)){
+            if (cargo == Cargo.BIBLIOTECARIO) {
+                Bibliotecario empleado = new Bibliotecario(nombre, identificacion, genero, correo, telefono, edad,sueldo, cargo);
+                listBibliotecarios.add(empleado);
                 centinela = true;
             }
-        }
-        if (empleado instanceof Administrador){
-            if (!verificarEmpleado(empleado.getIdentificacion())) {
-                listAdministradores.add((Administrador) empleado);
+            if (cargo == Cargo.ADMINISTRADOR) {
+                Administrador empleado = new Administrador(nombre, identificacion, genero, correo, telefono, edad,sueldo, cargo);
+                listAdministradores.add(empleado);
                 centinela = true;
             }
         }
         return centinela;
     }
-    public boolean agregarUsuario(String identificacion) {
-        Usuario usuario = buscarUsuario(identificacion);
+    public boolean agregarUsuario(String nombre,String identificacion, String genero, String correo, String telefono, int edad, Tipo tipo, String credencial) {
         boolean centinela = false;
-        if (usuario instanceof Estudiante) {
-            if (!verificarUsuario(usuario.getIdentificacion())) {
-                listEstudiantes.add((Estudiante) usuario);
+        if (!verificarUsuario(identificacion)) {
+            if (tipo == Tipo.ESTUDIANTE) {
+                Estudiante estudiante = new Estudiante(nombre, identificacion, genero, correo, telefono, edad, tipo, credencial);
+                listEstudiantes.add(estudiante);
                 centinela = true;
             }
-        }
-        if (usuario instanceof Docente) {
-            if (!verificarUsuario(usuario.getIdentificacion())) {
-                listDocentes.add((Docente) usuario);
+            if (tipo == Tipo.DOCENTE) {
+                Docente docente = new Docente(nombre, identificacion, genero, correo, telefono, edad, tipo, credencial);
+                listDocentes.add(docente);
                 centinela = true;
+            }
+            else{
+                System.out.println("Hey, los visitantes no tienen credencial");
+            }
+        }
+        return centinela;
+    }
+    public boolean agregarUsuario(String nombre,String identificacion, String genero, String correo, String telefono, int edad, Tipo tipo){
+        boolean centinela = false;
+        if (!verificarUsuario(identificacion)){
+            if (tipo == Tipo.VISITANTE){
+                Visitante visitante = new Visitante(nombre, identificacion, genero, correo, telefono, edad, tipo);
+                listVisitantes.add(visitante);
+                centinela = true;
+            }
+            else{
+                System.out.println("Hey, no eres visitante, estas infiltrado");
             }
         }
         return centinela;
     }
 
-    public boolean agregarLibro(String titulo) {
-        Libro libro = buscarLibro(titulo);
+    /**
+     * Sobrecarga de metodos, agregarLibro
+     * @param titulo
+     * @param autor
+     * @param genero
+     * @param anioPublicacion
+     * @param solicitudes
+     * @param esFisico
+     * @param estado
+     * @param enlaceDescarga
+     * @return
+     */
+    public boolean agregarLibro(String titulo, String autor, String genero, String anioPublicacion,int solicitudes,boolean esFisico,EstadoLibro estado, String enlaceDescarga) {
         boolean centinela = false;
-        if (libro instanceof LibroDigital){
-            if (!verificarLibro(libro.getTitulo())) {
-                listLibrosDigitales.add((LibroDigital) libro);
+        if (!verificarLibro(titulo)) {
+            if(!esFisico){
+                LibroDigital libroDigital = new LibroDigital(titulo, autor, genero, anioPublicacion, solicitudes, esFisico, estado, enlaceDescarga);
+                listLibrosDigitales.add(libroDigital);
                 centinela = true;
             }
+            else{
+                System.out.println("Hey, esto es para libros digitales");
+            }
         }
-        if (libro instanceof LibroFisico){
-            if (!verificarLibro(libro.getTitulo())) {
-                listLibrosFisicos.add((LibroFisico) libro);
+        return centinela;
+    }
+    public boolean agregarLibro(String titulo, String autor, String genero, String anioPublicacion,int solicitudes,boolean esFisico, EstadoLibro estado, String editorial, String ubicacionBiblioteca, int numeroPaginas){
+        boolean centinela = false;
+        if (!verificarLibro(titulo)) {
+            if(esFisico){
+                LibroFisico libroFisico = new LibroFisico(titulo, autor, genero, anioPublicacion, solicitudes, esFisico, estado, editorial, ubicacionBiblioteca, numeroPaginas);
+                listLibrosFisicos.add(libroFisico);
                 centinela = true;
+            }
+            else{
+                System.out.println("Hey, esto es para libros fisicos");
             }
         }
         return centinela;

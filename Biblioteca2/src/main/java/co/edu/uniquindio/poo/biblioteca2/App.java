@@ -1,6 +1,6 @@
 package co.edu.uniquindio.poo.biblioteca2;
 
-import co.edu.uniquindio.poo.biblioteca2.controller.PrimaryController;
+import co.edu.uniquindio.poo.biblioteca2.controller.*;
 import co.edu.uniquindio.poo.biblioteca2.model.*;
 import co.edu.uniquindio.poo.biblioteca2.viewController.*;
 import javafx.application.Application;
@@ -128,6 +128,9 @@ public class App extends Application {
             loader.setLocation(App.class.getResource("crudVisitante.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             VisitanteViewController visitanteViewController = loader.getController();
+            VisitanteController visitanteController = new VisitanteController();
+            visitanteController.setApp(this);
+            visitanteViewController.setVisitanteController(visitanteController);
             visitanteViewController.setApp(this);
 
             Scene scene = new Scene(rootLayout);
@@ -145,7 +148,11 @@ public class App extends Application {
             loader.setLocation(App.class.getResource("crudListaLibros.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             ListaLibrosViewController listaLibrosViewController = loader.getController();
+            ListaLibrosController listaLibrosController = new ListaLibrosController();
+            listaLibrosController.setApp(this);
+            listaLibrosViewController.setListaLibrosController(listaLibrosController);
             listaLibrosViewController.setApp(this);
+
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -162,6 +169,9 @@ public class App extends Application {
             loader.setLocation(App.class.getResource("crudLibroFisico.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             LibroFisicoViewController libroFisicoViewController = loader.getController();
+            LibroFisicoController libroFisicoController = new LibroFisicoController();
+            libroFisicoController.setApp(this);
+            libroFisicoViewController.setLibroFisicoController(libroFisicoController);
             libroFisicoViewController.setApp(this);
             libroFisicoViewController.setLibro(libro);
 
@@ -180,6 +190,9 @@ public class App extends Application {
             loader.setLocation(App.class.getResource("crudLibroDigital.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             LibroDigitalViewController libroDigitalViewController = loader.getController();
+            LibroDigitalController libroDigitalController = new LibroDigitalController();
+            libroDigitalController.setApp(this);
+            libroDigitalViewController.setLibroDigitalController(libroDigitalController);
             libroDigitalViewController.setApp(this);
             libroDigitalViewController.setLibro(libro);
 
@@ -193,9 +206,10 @@ public class App extends Application {
     }
 
     public void inicializarData(){
-        Usuario estudiante = new Estudiante("Ramon", "12345678", "Masculino", "<EMAIL>", "666666666", 20, Tipo.ESTUDIANTE, "111");
-        Libro libro = new LibroDigital("El principito", "Antoine de Saint Exupéry", "Masc", "1943", 2, EstadoLibro.DISPONIBLE, "omg");
-        biblioteca.agregarUsuario(estudiante.getIdentificacion());
-        biblioteca.agregarLibro(libro.getTitulo());
+        Usuario visitante = new Visitante("Ramon", "12345678", "Masculino", "<EMAIL>", "666666666", 20, Tipo.VISITANTE);
+        LibroDigital libro = new LibroDigital("El principito", "Antoine de Saint Exupéry", "Masc", "1943", 2,true , EstadoLibro.DISPONIBLE, "omg");
+        biblioteca.agregarUsuario(visitante.getNombre(),visitante.getIdentificacion(), visitante.getGenero(), visitante.getCorreo(), visitante.getTelefono(), visitante.getEdad(), visitante.getTipo());
+        biblioteca.agregarLibro(libro.getTitulo(), libro.getAutor(), libro.getGenero(), libro.getAnioPublicacion(), libro.getSolicitudes(), libro.isEsFisico(), libro.getEstado(), libro.getEnlaceDescarga());
+
     }
 }

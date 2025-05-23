@@ -9,7 +9,7 @@ public class Administrador extends Empleado{
     private Bibliotecario bibliotecario;
     private List<Usuario> listUsuarios;
 
-    public Administrador(String nombre, String identificacion, String genero, String correo, String telefono, int edad, double sueldo, Cargo cargo, Bibliotecario bibliotecario ) {
+    public Administrador(String nombre, String identificacion, String genero, String correo, String telefono, int edad, double sueldo, Cargo cargo ) {
         super(nombre, identificacion, genero, correo, telefono, edad, sueldo, cargo);
         this.bibliotecario = bibliotecario;
     }
@@ -19,8 +19,8 @@ public class Administrador extends Empleado{
         double porcentajeDeUsuariosNoDeudores = (cantUsuariosNoDeudores*100)/listUsuarios.size();
         return porcentajeDeUsuariosNoDeudores;
     }
-    public boolean registrarEmpleado(String identificacion) {
-        return biblioteca.agregarEmpleado(identificacion);
+    public boolean registrarEmpleado(String nombre,String identificacion,String genero, String correo, String telefono, int edad, double sueldo, Cargo cargo) {
+        return biblioteca.agregarEmpleado(nombre, identificacion, genero,correo, telefono , edad, sueldo, cargo);
     }
 
     public boolean eliminarEmpleado(String identificacion) {

@@ -4,8 +4,8 @@ public class LibroFisico extends Libro{
      private String editorial, ubicacionBiblioteca;
      private int numeroPaginas;
 
-    public LibroFisico(String titulo, String autor, String genero, String anioPublicacion,int solicitudes, EstadoLibro estado, String editorial, String ubicacionBiblioteca, int numeroPaginas) {
-        super(titulo, autor, genero, anioPublicacion, solicitudes, estado);
+    public LibroFisico(String titulo, String autor, String genero, String anioPublicacion,int solicitudes,boolean esFisico, EstadoLibro estado, String editorial, String ubicacionBiblioteca, int numeroPaginas) {
+        super(titulo, autor, genero, anioPublicacion, solicitudes,esFisico, estado);
         this.editorial = editorial;
         this.ubicacionBiblioteca = ubicacionBiblioteca;
         this.numeroPaginas = numeroPaginas;

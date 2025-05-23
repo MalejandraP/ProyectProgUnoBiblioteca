@@ -25,9 +25,8 @@ public class Bibliotecario extends Empleado{
      * @param edad
      * @param sueldo
      * @param cargo
-     * @param prestamo
      */
-    public Bibliotecario(String nombre, String identificacion, String genero, String correo, String telefono, int edad, double sueldo, Cargo cargo, Prestamo prestamo, Biblioteca biblioteca) {
+    public Bibliotecario(String nombre, String identificacion, String genero, String correo, String telefono, int edad, double sueldo, Cargo cargo) {
         super(nombre, identificacion, genero, correo, telefono, edad, sueldo,cargo);
         this.prestamo = prestamo;
         this.biblioteca = biblioteca;
@@ -174,8 +173,11 @@ public class Bibliotecario extends Empleado{
      * BOTON REGISTRAR USUARIO
      * @param identificacion
      */
-    public void agregarUsuario(String identificacion) {
-        biblioteca.agregarUsuario(identificacion);
+    public void agregarUsuario(String nombre,String identificacion, String genero, String correo, String telefono, int edad, Tipo tipo, String credencial) {
+        biblioteca.agregarUsuario(nombre,identificacion,genero,correo,telefono,edad,tipo,credencial);
+    }
+    public void agregarUsuario(String nombre,String identificacion, String genero, String correo, String telefono, int edad, Tipo tipo) {
+        biblioteca.agregarUsuario(nombre,identificacion,genero,correo,telefono,edad,tipo);
     }
 
     /**
@@ -202,8 +204,11 @@ public class Bibliotecario extends Empleado{
      * BOTON REGISTRAR LIBRO
      * @param titulo
      */
-    public void agregarLibro(String titulo) {
-        biblioteca.agregarLibro(titulo);
+    public void agregarLibro(String titulo, String autor, String genero, String anioPublicacion,int solicitudes, boolean esFisico, EstadoLibro estado, String enlaceDescarga) {
+        biblioteca.agregarLibro(titulo, autor, genero, anioPublicacion, solicitudes, esFisico, estado, enlaceDescarga);
+    }
+    public void agregarLibro(String titulo, String autor, String genero, String anioPublicacion,int solicitudes, boolean esFisico, EstadoLibro estado, String editorial, String ubicacionBiblioteca, int numeroPaginas) {
+        biblioteca.agregarLibro(titulo, autor, genero, anioPublicacion, solicitudes, esFisico, estado, editorial, ubicacionBiblioteca, numeroPaginas);
     }
 
     /**

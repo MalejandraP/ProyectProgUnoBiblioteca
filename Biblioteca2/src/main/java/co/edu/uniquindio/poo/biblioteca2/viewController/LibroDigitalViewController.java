@@ -49,6 +49,8 @@ public class LibroDigitalViewController {
         lblEnlaceDescarga.setText(libro.getEnlaceDescarga());
     }
 
-
+    public void setLibroDigitalController(LibroDigitalController libroDigitalController) {
+        this.libroDigitalController = libroDigitalController;
+    }
 
 }
