@@ -66,7 +66,9 @@ public class BibliotecaTest {
     void buscarPrestamo() {
         Biblioteca biblioteca= new Biblioteca("La Gran Colombia","Rocio");
         Estudiante estudiante1= new Estudiante("jUAN","123","nobinario", "@wre","312",12, Tipo.ESTUDIANTE, "123");
-        Libro libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
+        LibroDigital libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
+        biblioteca.agregarUsuario(estudiante1.getIdentificacion());
+        biblioteca.agregarLibro(libro1.getIdentificacion());
         Prestamo prestamo1= new Prestamo(22/05/2025,02/06/2025,28/05/2025,0.0, True, 123, libro1, estudiante1);
         biblioteca.agregarPrestamo(prestamo1.getId());
         assertEquals(prestamo1, biblioteca.buscarPrestamo(prestamo1.getId()));
@@ -117,17 +119,19 @@ public class BibliotecaTest {
         Biblioteca biblioteca= new Biblioteca("Sueños", "La rue morgue");
         Docente docente2=new Docente("Carlos", "524", "masculino","carlos@", "314", 35, tipo.DOCENTE, "547");
         LibroDigital libro3= new LibroDigital("Hamlet", "William Shakespaeare", "Drama", "1560", 10, EstadoLibro.DISPONIBLE,"https.hamlet.com");
+        biblioteca.agregarUsuario(docente2.getIdentificacion());
+        biblioteca.agregarLibro(libro3.getIdentificacion());
         Prestamo prestamo3= new Prestamo(15/05/2025,02/06/2025,28/05/2025,0.0, True, 123, libro3, docente2);
-        
-        assertFalse(biblioteca.eliminarPrestamo(prestamo3.getId()));
-        
+        assertFalse(biblioteca.eliminarPrestamo(prestamo3.getId())); 
     }
 
     @Test
     void agregarPrestamo() {
         Biblioteca biblioteca= new Biblioteca("Sueños", "La rue morgue");
         Estudiante estudiante1= new Estudiante("jUAN","123","nobinario", "@wre","312",12, Tipo.ESTUDIANTE, "123");
-        Libro libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
+        LibroDigital libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
+        biblioteca.agregarUsuario(estudiante1.getIdentificacion());
+        biblioteca.agregarLibro(libro1.getIdentificacion());
         Prestamo prestamo2= new Prestamo(15/05/2025,02/06/2025,28/05/2025,0.0, True, 123, libro1, estudiante1);
         biblioteca.agregarPrestamo(prestamo2.getId());
         assertFalse(biblioteca.agregarPrestamo(prestamo2.getId()));
