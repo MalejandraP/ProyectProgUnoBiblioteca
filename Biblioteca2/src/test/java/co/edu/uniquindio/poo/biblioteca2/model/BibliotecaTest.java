@@ -85,10 +85,15 @@ public class BibliotecaTest {
         Biblioteca biblioteca= new Biblioteca("Albert Einstien","Coointevi");
         Bibliotecario bibliotecario3= new Bibliotecario("Sara", "157", "femenino", "sara@2", "95400", 50, 500.0, Cargo.BIBLIOTECARIO);
         biblioteca.agregarEmpleado(bibliotecario4.getIdentificacion());
+        assertTrue(biblioteca.eliminarEmpleado(bibliotecario3.getIdentificacion()));
     }
 
     @Test
     void eliminarUsuario() {
+        Biblioteca biblioteca= new Biblioteca("Mario Benediti","Ciudad Bolivar");
+        Estudiante estudiante1= new Estudiante("jUAN","123","nobinario", "@wre","312",12, Tipo.ESTUDIANTE, "123");
+        biblioteca.agregarUsuario(estudiante1.getIdentificacion());
+        assertEquals(estudiante1,biblioteca.buscarUsuario(estudiante1.getIdentificacion()));
     }
 
     @Test
@@ -109,6 +114,13 @@ public class BibliotecaTest {
 
     @Test
     void eliminarPrestamo() {
+        Biblioteca biblioteca= new Biblioteca("Sueños", "La rue morgue");
+        Docente docente2=new Docente("Carlos", "524", "masculino","carlos@", "314", 35, tipo.DOCENTE, "547");
+        LibroDigital libro3= new LibroDigital("Hamlet", "William Shakespaeare", "Drama", "1560", 10, EstadoLibro.DISPONIBLE,"https.hamlet.com");
+        Prestamo prestamo3= new Prestamo(15/05/2025,02/06/2025,28/05/2025,0.0, True, 123, libro3, docente2);
+        
+        assertFalse(biblioteca.eliminarPrestamo(prestamo3.getId()));
+        
     }
 
     @Test
@@ -117,8 +129,8 @@ public class BibliotecaTest {
         Estudiante estudiante1= new Estudiante("jUAN","123","nobinario", "@wre","312",12, Tipo.ESTUDIANTE, "123");
         Libro libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
         Prestamo prestamo2= new Prestamo(15/05/2025,02/06/2025,28/05/2025,0.0, True, 123, libro1, estudiante1);
-        biblioteca.agregarPrestamo(prestamo2.getId);
-        assertFalse(biblioteca.agregarPrestamo(prestamo2.getId))
+        biblioteca.agregarPrestamo(prestamo2.getId());
+        assertFalse(biblioteca.agregarPrestamo(prestamo2.getId()));
         
     }
 
