@@ -27,7 +27,7 @@ public class Bibliotecario extends Empleado{
      * @param cargo
      * @param prestamo
      */
-    public Bibliotecario(String nombre, String identificacion, String genero, String correo, String telefono, int edad, double sueldo, Cargo cargo, Prestamo prestamo, Biblioteca biblioteca) {
+    public Bibliotecario(String nombre, String identificacion, String genero, String correo, String telefono, int edad, double sueldo, Cargo cargo) {
         super(nombre, identificacion, genero, correo, telefono, edad, sueldo,cargo);
         this.prestamo = prestamo;
         this.biblioteca = biblioteca;
