@@ -20,6 +20,8 @@ public class BibliotecaTest {
         int antes= biblioteca.getListPrestamos.size();
         Docente docente3= new Docente("Aurelia", "26578", "femenino", "aurelia@", "3147893", 52, tipo.DOCENTE, "36974");
         LibroFisico libro6= new LibroFisico("Iliada", "Homero", "Epico", "500 a.C", true, EstadoLibro.DISPONIBLE, "LosTresEDitores", "14785", 120);
+        biblioteca.agregarUsuario(docente3);
+        biblioteca.agregarLibro(libro6);
         biblioteca.prestarLibro(libro6.getTitulo(), docente3.getIdentifificacion(), LocalDate.of(24,05,2025)) "954");
         int despues= biblioteca.getListPrestamos.size();
         assertEquals(antes+1, despues);
