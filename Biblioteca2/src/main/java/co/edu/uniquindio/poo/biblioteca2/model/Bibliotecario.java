@@ -91,6 +91,19 @@ public class Bibliotecario extends Empleado{
         }
         return deudaFinal;
     }
+    public boolean puedePrestarDeuda(Usuario usuario, Prestamo Prestamo){
+        boolean centinela= true;
+        Usuario usuario= buscarUsuario(usuario);
+        List<Prestamo> listPrestamosU= usuario.getlistPrestamos;
+        for(Prestamo p: listPrestamosU){
+            String id= p.getId;
+            LocalDate fecha= p.getFechaDevolucion;
+            if(calcularDeuda(id, fecha)>0){
+                centinela=false;
+            }
+        }
+        return centinela;
+    }
 
     /**
      * Metodo para hallar el o los libros más solicitados (que tengan mayot cantidad de solicitudes)
