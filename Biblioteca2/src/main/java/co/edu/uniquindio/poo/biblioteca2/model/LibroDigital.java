@@ -4,8 +4,8 @@ public class LibroDigital extends Libro {
 
     private String enlaceDescarga;
 
-    public LibroDigital(String titulo, String autor, String genero, String anioPublicacion,int solicitudes, boolean esFisico, EstadoLibro estado, String enlaceDescarga) {
-        super(titulo, autor, genero, anioPublicacion, solicitudes,esFisico, estado);
+    public LibroDigital(String titulo, String autor, String genero, String anioPublicacion, boolean esFisico, EstadoLibro estado, String enlaceDescarga) {
+        super(titulo, autor, genero, anioPublicacion, esFisico, estado);
         this.enlaceDescarga = enlaceDescarga;
         assert enlaceDescarga != null;
     }
