@@ -29,6 +29,16 @@ public class Docente extends Usuario implements GestionPrestamo{
     public void agregarPrestamo(Prestamo prestamo) {
         listPrestamos.add(prestamo);
     }
+     
+    @Override 
+    public boolean librosPrestados(Prestamo prestamo){
+        boolean centinela = true; 
+        if(listPrestamos.size()>10){
+            centinela=false;     
+        }
+        return centinela
+        
+    }
 
     public List<Prestamo> getListPrestamos() {
         return listPrestamos;
