@@ -95,15 +95,18 @@ public class Bibliotecario extends Empleado{
         boolean centinela= true;
         Usuario usuario= buscarUsuario(id);
         List<Prestamo> listPrestamosU= usuario.getlistPrestamos;
+        for(Prestamo p: listPrestamosU){
         if (usuario instanceof Estudiante){
             Estudiante estudiante = (Estudiante) usuario;
-            if(!estudiante.puedePrestarCantidadLibros || calcularDeudaTotal(id)>0){
+            if(!estudiante.puedePrestarCantidadLibros(p) || calcularDeudaTotal(id)>0){
                 centinela= false;
             }
+        }
         else if(usuario instanceof Docente){
             Docente docente = (Docente) usuario;
-            if(!docente.puedePrestarCantidadLibros || calcularDeudaTotal(id)>0){
+            if(!docente.puedePrestarCantidadLibros(p) || calcularDeudaTotal(id)>0){
                 centinela= false;
+        }
         }
             
         return centinela;
