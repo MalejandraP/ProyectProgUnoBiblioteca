@@ -15,7 +15,9 @@ public class BibliotecaTest {
         LibroDigital libro3= new LibroDigital("Hamlet", "William Shakespaeare", "Drama", "1560", false,  EstadoLibro.DISPONIBLE,"https.hamlet.com");
         biblioteca.agregarUsuario(docente2);
         biblioteca.agregarLibro(libro3);
-        Prestamo prestamo1= new Prestamo(LocalDate.of(15,05,2025),LocalDate.of(02,06,2025),LocalDate.of(28,05,2025),0.0, true, "253", libro1, estudiante1);
+        Prestamo prestamo1= new Prestamo(LocalDate.of(15,05,2025),LocalDate.of(02,06,2025), "4895", libro3, docente2);
+        biblioteca.agregarPrestamo(prestamo1);
+        
         
         
     }
