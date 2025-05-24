@@ -53,7 +53,7 @@ public class BibliotecaTest {
         Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO")
         LibroDigital libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
         biblioteca.agregarLibro(libro1);
-        assertNotNull(biblioteca.buscarlibro(libro1.getTitulo));
+        assertNotNull(biblioteca.buscarlibro(libro1.getTitulo());
     }
     
     @Test
@@ -75,7 +75,7 @@ public class BibliotecaTest {
         Biblioteca biblioteca= new Biblioteca("universidad de los andes","Laureles");
         Empleado bibliotecario4= new Bibliotecario("Alejo", "167", "masculino", "alejo@2", "3125", 18, 2.5, Cargo.BIBLIOTECARIO);
         biblioteca.agregarEmpleado(biblitecario4);
-        assertNotNull(bibliotecario4);
+        assertNotNull(biblioteca.buscarEmpleado(bibliotecario4.getIdentificacion());
     }
 
     @Test
