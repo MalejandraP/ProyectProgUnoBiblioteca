@@ -58,7 +58,7 @@ public class Biblioteca {
      * @param devuelto
      * @param id
      */
-    public void prestarLibro(String titulo, String identificacion, LocalDate fecha, LocalDate fechaMaximaDevolucion,  String id) {
+    public void prestarLibro(String titulo, String identificacion, LocalDate fecha, String id) {
         Usuario usuario = buscarUsuario(identificacion);
         Libro libro = buscarLibro(titulo);
         if (usuario == null || libro == null) {
@@ -69,7 +69,7 @@ public class Biblioteca {
             System.out.println("El libro no está disponible.");
             return;
         }
-        Prestamo prestamo = new Prestamo(fecha, fechaMaximaDevolucion, id, libro, usuario);
+        Prestamo prestamo = new Prestamo(fecha, id, libro, usuario);
         agregarPrestamo(prestamo);
         if (usuario instanceof Docente) {
             Docente docente = (Docente) usuario;
