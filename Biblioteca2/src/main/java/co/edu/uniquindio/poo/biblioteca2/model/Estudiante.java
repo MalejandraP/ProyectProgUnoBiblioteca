@@ -41,13 +41,13 @@ public class Estudiante extends Usuario implements GestionPrestamo{
         int prestamosSinDevolver=0
         for(Prestamo p: listPrestamos){
             if(!p.isDevuelto()){
-                prestamosSinDevolver++
+                prestamosSinDevolver++;
             }
         }
         if (prestamosSinDevolver>5){
-            centinel=false;
+            centinela=false;
         }
-        return centinela
+        return centinela;
         
     }
     
