@@ -6,7 +6,7 @@ public class Libro {
     private boolean esFisico;
     private EstadoLibro estado;
 
-    public Libro(String titulo, String autor, String genero, String anioPublicacion,int solicitudes,boolean esFisico, EstadoLibro estado) {
+    public Libro(String titulo, String autor, String genero, String anioPublicacion,boolean esFisico, EstadoLibro estado) {
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;
