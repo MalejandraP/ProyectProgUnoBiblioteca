@@ -10,6 +10,10 @@ public class BibliotecaTest {
 
     @Test
     void prestarLibro() {
+        Biblioteca biblioteca=new Biblioteca("La Alejandría", "Grecia");
+        Docente docente2=new Docente("Carlos", "524", "masculino","carlos@", "314", 35, tipo.DOCENTE, "547");
+        LibroDigital libro3= new LibroDigital("Hamlet", "William Shakespaeare", "Drama", "1560", 10, EstadoLibro.DISPONIBLE,"https.hamlet.com");
+        
         
     }
     @Test
