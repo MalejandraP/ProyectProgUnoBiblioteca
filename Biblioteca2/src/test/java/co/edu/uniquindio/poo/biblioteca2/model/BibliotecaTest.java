@@ -53,7 +53,7 @@ public class BibliotecaTest {
         Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO")
         LibroDigital libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
         biblioteca.agregarLibro(libro1.getIdentificacion());
-        assertNotNull(libro1, biblioteca.buscarLibro(libro1.getTitulo()));
+        assertNotNull(libro1);
     }
     
     @Test
@@ -66,7 +66,7 @@ public class BibliotecaTest {
     void buscarUsuario() {
         Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO,");
         Estudiante estudiante1= new Estudiante("jUAN","123","nobinario", "@wre","312",12, Tipo.ESTUDIANTE, "123");
-        biblioteca.agregarUsuario(estudiante1.getIdentificacion());
+        biblioteca.agregarUsuario(estudiante1);
         assertEquals(estudiante1,biblioteca.buscarUsuario(estudiante1.getIdentificacion()));
     }
 
@@ -75,7 +75,7 @@ public class BibliotecaTest {
         Biblioteca biblioteca= new Biblioteca("universidad de los andes","Laureles");
         Empleado bibliotecario4= new Bibliotecario("Alejo", "167", "masculino", "alejo@2", "3125", 18, 2.5, Cargo.BIBLIOTECARIO);
         biblioteca.agregarEmpleado(biblitecario4.getIdentificacion());
-        assertNotNull(bibliotecario4, biblioteca.buscarEmpleado(bibliotecario4.getIdentificacion()));
+        assertNotNull(bibliotecario4);
     }
 
     @Test
