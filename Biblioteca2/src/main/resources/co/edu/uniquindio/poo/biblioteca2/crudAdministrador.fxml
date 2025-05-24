@@ -16,10 +16,11 @@
          </font></Label>
       <Button fx:id="btnRegresar" layoutX="40.0" layoutY="30.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
       <Button fx:id="btnGestionarEmpleado" layoutX="229.0" layoutY="175.0" mnemonicParsing="false" onAction="#onGestionarEmpleado" text="Gestión de empleado" />
-      <Button fx:id="btnCantidadEmpleadosEliminados" layoutX="201.0" layoutY="268.0" mnemonicParsing="false" onAction="#onCantidadEmpleadosEliminados" text="Cantidad Empleados Eliminados" />
+      <Button fx:id="btnCantidadEmpleadosEliminados" layoutX="202.0" layoutY="293.0" mnemonicParsing="false" onAction="#onCantidadEmpleadosEliminados" text="Cantidad Empleados Eliminados" />
       <Label layoutX="215.0" layoutY="99.0" text="¿Qué deseas hacer?">
          <font>
             <Font size="18.0" />
          </font></Label>
+      <Button layoutX="196.0" layoutY="233.0" mnemonicParsing="false" text="Porcentaje Usuarios No Deudores" />
    </children>
 </AnchorPane>

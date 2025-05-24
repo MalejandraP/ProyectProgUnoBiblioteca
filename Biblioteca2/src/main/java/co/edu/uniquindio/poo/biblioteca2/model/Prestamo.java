@@ -24,9 +24,6 @@ public class Prestamo {
      * Metodo constructor de la clase préstamo
      * @param fecha
      * @param fechaMaximaDevolucion
-     * @param fechaDevolucion
-     * @param deuda
-     * @param devuelto
      * @param id
      * @param libro
      * @param usuario

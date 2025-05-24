@@ -18,7 +18,9 @@ public class BibliotecarioViewController {
     @FXML
     void onGestionarUsuario(){}
     @FXML
-    void onGestionarLibro(){}
+    void onGestionarLibro(){
+        irAGestion();
+    }
     @FXML
     void onRealizarPrestamo(){}
     @FXML
@@ -47,5 +49,9 @@ public class BibliotecarioViewController {
     @FXML
     private void regresarPrincipal(){
         bibliotecarioController.regresarPaginaPrincipal();
+    }
+    @FXML
+    private void irAGestion(){
+        bibliotecarioController.abrirGestionLibro();
     }
 }

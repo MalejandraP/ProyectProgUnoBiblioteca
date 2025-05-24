@@ -30,7 +30,9 @@ public class AdministradorViewController {
     private Button btnRegresar, btnGestionarEmpleado, btnCantidadEmpleadosEliminados;
 
     @FXML
-    void onGestionarEmpleado(){}
+    void onGestionarEmpleado(){
+        abrirGestionEmpleado();
+    }
     @FXML
     void onCantidadEmpleadosEliminados(){}
 
@@ -42,6 +44,10 @@ public class AdministradorViewController {
     @FXML
     private void regresarPrincipal(){
         administradorController.regresarPaginaPrincipal();
+    }
+    @FXML
+    private void abrirGestionEmpleado(){
+        administradorController.abrirGestion();
     }
 
 

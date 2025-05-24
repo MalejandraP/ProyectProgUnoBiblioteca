@@ -9,6 +9,10 @@ public class AdministradorController{
         app.openViewPrincipal();
     }
 
+    public void abrirGestion(){
+        app.openCrudGestionEmpleado();
+    }
+
     public void setApp(App app) {
         this.app = app;
     }

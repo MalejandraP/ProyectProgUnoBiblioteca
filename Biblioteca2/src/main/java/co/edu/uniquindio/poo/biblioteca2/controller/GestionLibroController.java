@@ -2,14 +2,11 @@ package co.edu.uniquindio.poo.biblioteca2.controller;
 
 import co.edu.uniquindio.poo.biblioteca2.App;
 
-public class BibliotecarioController {
+public class GestionLibroController {
     private App app;
 
-    public void regresarPaginaPrincipal() {
-        app.openViewPrincipal();
-    }
-    public void abrirGestionLibro(){
-        app.openCrudGestionLibro();
+    public void regresarAlBibliotecario() {
+        app.openCrudBibliotecario();
     }
 
     public void setApp(App app) {

@@ -53,9 +53,6 @@ public class Biblioteca {
      * @param identificacion
      * @param fecha
      * @param fechaMaximaDevolucion
-     * @param fechaDevolucion
-     * @param deuda
-     * @param devuelto
      * @param id
      */
     public void prestarLibro(String titulo, String identificacion, LocalDate fecha, LocalDate fechaMaximaDevolucion,  String id) {

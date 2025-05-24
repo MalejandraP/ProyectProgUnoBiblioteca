@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="502.0" prefWidth="1046.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.viewController.GestionLibroViewController">
+   <children>
+      <Button layoutX="27.0" layoutY="27.0" mnemonicParsing="false" text="Regresar" />
+      <TableView layoutX="37.0" layoutY="136.0" prefHeight="265.0" prefWidth="450.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Titulo" />
+          <TableColumn prefWidth="75.0" text="Autor" />
+            <TableColumn prefWidth="75.0" text="Genero" />
+            <TableColumn prefWidth="75.0" text="Año Publicacion" />
+            <TableColumn prefWidth="75.0" text="¿Es Fisico?" />
+            <TableColumn prefWidth="75.0" text="Estado" />
+        </columns>
+      </TableView>
+      <Label layoutX="660.0" layoutY="205.0" text="Autor:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="656.0" layoutY="327.0" text="Estado:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="654.0" layoutY="247.0" text="Genero:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="660.0" layoutY="165.0" text="Titulo:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="585.0" layoutY="289.0" text="Año de Publicación:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="646.0" layoutY="113.0" text="¿Es físico?:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="444.0" layoutY="35.0" text="Gestión Libros">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <ComboBox layoutX="736.0" layoutY="324.0" prefWidth="150.0" />
+      <Button layoutX="810.0" layoutY="111.0" mnemonicParsing="false" text="Cargar" />
+      <TextField layoutX="736.0" layoutY="163.0" />
+      <TextField layoutX="736.0" layoutY="203.0" />
+      <TextField layoutX="736.0" layoutY="244.0" />
+      <TextField layoutX="736.0" layoutY="286.0" />
+      <Separator layoutX="520.0" layoutY="99.0" orientation="VERTICAL" prefHeight="380.0" prefWidth="6.0" />
+      <Button layoutX="938.0" layoutY="176.0" mnemonicParsing="false" text="Agregar" />
+      <Button layoutX="938.0" layoutY="235.0" mnemonicParsing="false" text="Actualizar" />
+      <Button layoutX="210.0" layoutY="441.0" mnemonicParsing="false" text="Eliminar" />
+   </children>
+</AnchorPane>

@@ -217,13 +217,53 @@ public class App extends Application {
         }
     }
 
+    public void openCrudGestionEmpleado() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("crudGestionEmpleado.fxml"));
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+            GestionEmpleadoViewController gestionEmpleadoViewController = loader.getController();
+            GestionEmpleadoController gestionEmpleadoController = new GestionEmpleadoController();
+            gestionEmpleadoController.setApp(this);
+            gestionEmpleadoViewController.setGestionEmpleadoController(gestionEmpleadoController);
+            gestionEmpleadoViewController.setApp(this);
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void openCrudGestionLibro() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("crudGestionLibro.fxml"));
+            AnchorPane rootLayout = (AnchorPane) loader.load();
+            GestionLibroViewController gestionLibroViewController = loader.getController();
+            GestionLibroController gestionLibroController = new GestionLibroController();
+            gestionLibroController.setApp(this);
+            gestionLibroViewController.setGestionLibroController(gestionLibroController);
+            gestionLibroViewController.setApp(this);
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
     public void inicializarData(){
         Usuario visitante1 = new Visitante("Ramon", "12345678", "Masculino", "<EMAIL>", "666666666", 20, Tipo.VISITANTE);
         Bibliotecario bibliotecario1 = new Bibliotecario("Shaw", "63697", "masculino", "sahw@2", "2571", 25, 60000.0, Cargo.BIBLIOTECARIO);
         Administrador administrador1 = new Administrador("Miguel", "5634", "masculino", "miguel@2", "25631", 42, 600.0, Cargo.ADMINISTRADOR);
         Estudiante estudiante1 = new Estudiante("Samuelito", "1209", "Masc", "@miguelito123", "311", 20, Tipo.ESTUDIANTE, "7580");
         Docente docente1 = new Docente("Jose", "1235", "Masculino", "<EMAIL>", "666666666", 20, Tipo.DOCENTE, "1234");
-        LibroDigital libroDig1 = new LibroDigital("El principito", "Antoine de Saint Exupéry", "Masc", "1943", 2,false , EstadoLibro.DISPONIBLE, "omg");
+        LibroDigital libroDig1 = new LibroDigital("El principito", "Antoine de Saint Exupéry", "Masc", "1943", false , EstadoLibro.DISPONIBLE, "omg");
         biblioteca.agregarUsuario(visitante1);
         biblioteca.agregarEmpleado(bibliotecario1);
         biblioteca.agregarEmpleado(administrador1);

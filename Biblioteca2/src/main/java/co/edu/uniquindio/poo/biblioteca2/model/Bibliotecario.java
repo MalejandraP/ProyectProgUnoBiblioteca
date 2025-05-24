@@ -251,7 +251,7 @@ public class Bibliotecario extends Empleado{
      * @param id
      */
     public void prestarLibro(String titulo, String identificacion, LocalDate fecha, LocalDate fechaMaximaDevolucion, LocalDate fechaDevolucion, double deuda, boolean devuelto, String id) {
-        biblioteca.prestarLibro(titulo, identificacion, fecha, fechaMaximaDevolucion, fechaDevolucion, deuda, devuelto, id);
+        biblioteca.prestarLibro(titulo, identificacion, fecha, fechaMaximaDevolucion, id);
     }
 
     public List<Prestamo> getListPrestamos() {

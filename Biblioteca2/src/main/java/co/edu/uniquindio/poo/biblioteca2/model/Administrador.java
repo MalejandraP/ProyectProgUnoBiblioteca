@@ -19,6 +19,7 @@ public class Administrador extends Empleado{
         double porcentajeDeUsuariosNoDeudores = (cantUsuariosNoDeudores*100)/listUsuarios.size();
         return porcentajeDeUsuariosNoDeudores;
     }
+
     public boolean registrarEmpleado(Empleado empleado) {
         return biblioteca.agregarEmpleado(empleado);
     }
