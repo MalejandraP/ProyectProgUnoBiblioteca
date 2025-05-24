@@ -58,7 +58,7 @@ public class Biblioteca {
      * @param devuelto
      * @param id
      */
-    public void prestarLibro(String titulo, String identificacion, LocalDate fecha, LocalDate fechaMaximaDevolucion, LocalDate fechaDevolucion, double deuda, boolean devuelto, String id) {
+    public void prestarLibro(String titulo, String identificacion, LocalDate fecha, LocalDate fechaMaximaDevolucion,  String id) {
         Usuario usuario = buscarUsuario(identificacion);
         Libro libro = buscarLibro(titulo);
         if (usuario == null || libro == null) {
