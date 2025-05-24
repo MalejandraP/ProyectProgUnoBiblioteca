@@ -31,12 +31,18 @@ public class Docente extends Usuario implements GestionPrestamo{
     }
      
     @Override 
-    public boolean librosPrestados(Prestamo prestamo){
+    public boolean puedePrestarCantidadlibros(Prestamo prestamo){
         boolean centinela = true; 
-        if(listPrestamos.size()>10){
-            centinela=false;     
+        int prestamosSinDevolver=0
+        for(Prestamo p: listPrestamos){
+            if(!p.isDevuelto()){
+                prestamosSinDevolver++;
+            }
         }
-        return centinela
+        if (prestamosSinDevolver>10){
+            centinela=false;
+        }
+        return centinela;
         
     }
 
