@@ -91,16 +91,11 @@ public class Bibliotecario extends Empleado{
         }
         return deudaFinal;
     }
-    public boolean puedePrestarDeuda(Usuario usuario, Prestamo Prestamo){
+    public boolean puedePrestarDeuda(String id, LocalDate fechaDevolucion){
         boolean centinela= true;
-        Usuario usuario= buscarUsuario(usuario);
+        Usuario usuario= buscarUsuario(id);
         List<Prestamo> listPrestamosU= usuario.getlistPrestamos;
-        for(Prestamo p: listPrestamosU){
-            String id= p.getId;
-            LocalDate fecha= p.getFechaDevolucion;
-            if(calcularDeuda(id, fecha)>0){
-                centinela=false;
-            }
+        if(usuario.puedePrestarCantidadLibros  calcularDeudaTotal(id))
         }
         return centinela;
     }
