@@ -95,6 +95,7 @@ public class Bibliotecario extends Empleado{
         boolean centinela= true;
         Usuario usuario= buscarUsuario(id);
         List<Prestamo> listPrestamosU= usuario.getlistPrestamos;
+        if (usuario instanceof Estudiante)
         if(usuario.puedePrestarCantidadLibros  calcularDeudaTotal(id))
         }
         return centinela;
