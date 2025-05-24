@@ -31,7 +31,7 @@ public class Prestamo {
      * @param libro
      * @param usuario
      */
-    public Prestamo(LocalDate fecha, LocalDate fechaMaximaDevolucion,LocalDate fechaDevolucion, double deuda,boolean devuelto,String id,Libro libro, Usuario usuario) {
+    public Prestamo(LocalDate fecha, LocalDate fechaMaximaDevolucion, String id,Libro libro, Usuario usuario) {
         this.fecha = fecha;
         this.fechaMaximaDevolucion = fechaMaximaDevolucion;
         this.fechaDevolucion = null;
