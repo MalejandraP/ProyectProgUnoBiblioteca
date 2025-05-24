@@ -17,6 +17,12 @@ public class BibliotecaTest {
         biblioteca.agregarLibro(libro3);
         Prestamo prestamo1= new Prestamo(LocalDate.of(15,05,2025),LocalDate.of(02,06,2025), "4895", libro3, docente2);
         biblioteca.agregarPrestamo(prestamo1);
+        int antes= biblioteca.getListPrestamos.size();
+        Docente docente3= new Docente("Aurelia", "26578", "femenino", "aurelia@", "3147893", 52, tipo.DOCENTE, "36974");
+        LibroFisico libro6= new LibroFisico("Iliada", "Homero", "Epico", "500 a.C", true, EstadoLibro.DISPONIBLE, "LosTresEDitores", "14785", 120);
+        biblioteca.prestarLibro(libro6.getTitulo(), docente3.getIdentifificacion(), LocalDate.of(24,05,2025)), LocalDate.of(12,06,2025), "954");
+        int despues= biblioteca.getListPrestamos.size();
+        assertEquals(antes+1, despues);
         
         
         
