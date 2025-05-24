@@ -14,10 +14,18 @@ public class Administrador extends Empleado{
         this.bibliotecario = bibliotecario;
     }
 
-    public double reportePorcentajeDeUsuariosNoDeudores(){
+    public int reportePorcentajeDeUsuariosNoDeudores(){
         int cantUsuariosNoDeudores = listUsuarios.size() - bibliotecario.reporteUsuariosDeudores().size();
         double porcentajeDeUsuariosNoDeudores = (cantUsuariosNoDeudores*100)/listUsuarios.size();
         return porcentajeDeUsuariosNoDeudores;
+    }
+    public reporteUsuariosEliminados(){
+        int eliminados= biblioteca.getUsuariosEliminados();
+        return eliminados;
+    }
+    public reporteCantidadUsuarios(){
+        int cantidadUsuarios= biblioteca.getListPrestamos().size();
+        return cantidadUsuarios;
     }
 
     public boolean registrarEmpleado(Empleado empleado) {
