@@ -5,4 +5,6 @@ public interface GestionPrestamo {
     public boolean puedePrestar(Prestamo prestamo);
 
     public void agregarPrestamo(Prestamo prestamo);
+
+    public boolean librosPrestados(Prestamo prestamo);
 }
