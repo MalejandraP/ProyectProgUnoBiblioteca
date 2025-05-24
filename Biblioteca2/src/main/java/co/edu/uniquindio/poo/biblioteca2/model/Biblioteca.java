@@ -69,7 +69,7 @@ public class Biblioteca {
             System.out.println("El libro no está disponible.");
             return;
         }
-        Prestamo prestamo = new Prestamo(fecha, fechaMaximaDevolucion, fechaDevolucion, deuda, devuelto,id, libro, usuario);
+        Prestamo prestamo = new Prestamo(fecha, fechaMaximaDevolucion, id, libro, usuario);
         agregarPrestamo(prestamo);
         if (usuario instanceof Docente) {
             Docente docente = (Docente) usuario;
