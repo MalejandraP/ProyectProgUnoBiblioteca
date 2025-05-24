@@ -35,6 +35,8 @@ public class Estudiante extends Usuario implements GestionPrestamo{
     public void agregarPrestamo(Prestamo prestamo) {
         listPrestamos.add(prestamo);
     }
+    @Override 
+    public void agregarPrestamo(Prestamo prestamo);
 
 
     public List<Prestamo> getListPrestamos() {
