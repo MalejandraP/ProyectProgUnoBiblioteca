@@ -26,8 +26,6 @@ public class BibliotecaTest {
         int despues= biblioteca.getListPrestamos.size();
         assertEquals(antes+1, despues);
         
-        
-        
     }
     @Test
     void agregarEmpleado() {
