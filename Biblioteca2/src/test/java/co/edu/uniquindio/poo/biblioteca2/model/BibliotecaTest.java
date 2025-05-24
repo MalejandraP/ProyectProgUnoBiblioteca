@@ -7,25 +7,29 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BibliotecaTest {
+
+    @Test
+    void prestarLibro() {
+    }
     @Test
     void agregarEmpleado() {
         Biblioteca biblioteca= new Biblioteca("La Nacional","kenedy");
         Empleado bibliotecario1= new Bibliotecario("Rafael", "875", "masculino", "rafael@2", "3198", 24, 300.0, Cargo.BIBLIOTECARIO);
-        aasertTrue(biblioteca.agregarEmpleado(bibliotecario1.getIdentificacion()));
+        aasertTrue(biblioteca.agregarEmpleado(bibliotecario1);
         
     }
     @Test
     void agregarUsuario() {
         Biblioteca biblioteca= new Biblioteca("Howard","Clementina");
         Docente docente2=new Docente("Carlos", "524", "masculino","carlos@", "314", 35, tipo.DOCENTE, "547");
-        assertTrue(biblioteca.agregarUsuario(docente2.getIdentificacion());
+        assertTrue(biblioteca.agregarUsuario(docente2);
     }
     @Test
     void agregarLibro() {
         Biblioteca biblioteca= new Biblioteca("Harvard","La Gran Manzana");
         LibroFisico libro2= new LibroFisico("Cien años de soledad", "Gabo", "historia", "1980", 4, EstadoLibro.DISPONIBLE, "librosSuperPro", "carrera 8", "350");
-        biblioteca.agregarLibro(libro2.getTitulo());
-        assertFalse(biblioteca.agregarLibro(libro2.getTitulo()));
+        biblioteca.agregarLibro(libro2);
+        assertFalse(biblioteca.agregarLibro(libro2);
         
     }
     @Test
