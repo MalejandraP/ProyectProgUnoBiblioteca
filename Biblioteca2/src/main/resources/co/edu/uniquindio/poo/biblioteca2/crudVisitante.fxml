@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.edu.uniquindio.poo.biblioteca2.CrudVisitante"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="356.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.viewController.VisitanteViewController">
+   <children>
+      <Label layoutX="394.0" layoutY="34.0" text="Hola">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="437.0" layoutY="34.0" text="Nombre Visitante">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="93.0" layoutY="165.0" text="Lo siento, no puedes hacer nada aquí :(">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnRegresar" layoutX="40.0" layoutY="30.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
+   </children>
 </AnchorPane>

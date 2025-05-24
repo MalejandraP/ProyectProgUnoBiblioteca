@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.edu.uniquindio.poo.biblioteca2.CrudBibliotecario"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.viewController.BibliotecarioViewController">
+   <children>
+      <Label layoutX="394.0" layoutY="34.0" text="Hola ">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="lblNombreCambio" layoutX="437.0" layoutY="34.0" text="Nombre Bibliotecario">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnRegresar" layoutX="40.0" layoutY="30.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
+      <Label layoutX="215.0" layoutY="99.0" text="¿Qué deseas hacer?">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button fx:id="btnGestionarUsuario" layoutX="327.0" layoutY="164.0" mnemonicParsing="false" onAction="#onGestionarUsuario" text="Gestión del Usuario" />
+      <Button fx:id="btnGestionarLibro" layoutX="148.0" layoutY="164.0" mnemonicParsing="false" onAction="#onGestionarLibro" text="Gestionar Libro" />
+      <Button fx:id="btnRealizarPrestamo" layoutX="327.0" layoutY="226.0" mnemonicParsing="false" onAction="#onRealizarPrestamo" text="Realizar Préstamo" />
+      <Button fx:id="btnDevolverLibro" layoutX="150.0" layoutY="226.0" mnemonicParsing="false" onAction="#onDevolverLibro" text="Devolver Libro" />
+      <Button fx:id="btnUsuariosDeudores" layoutX="127.0" layoutY="294.0" mnemonicParsing="false" onAction="#onUsuariosDeudores" text="Usuarios Deudores" />
+      <Button fx:id="btnLibrosMasSolicitados" layoutX="327.0" layoutY="300.0" mnemonicParsing="false" text="Libros Más Solicitados" />
+   </children>
 </AnchorPane>

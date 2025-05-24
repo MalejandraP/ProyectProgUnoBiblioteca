@@ -36,4 +36,6 @@ public class LibroFisico extends Libro{
     public void setNumeroPaginas(int numeroPaginas) {
         this.numeroPaginas = numeroPaginas;
     }
+
+
 }

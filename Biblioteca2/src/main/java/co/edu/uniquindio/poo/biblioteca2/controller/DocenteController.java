@@ -2,10 +2,11 @@ package co.edu.uniquindio.poo.biblioteca2.controller;
 
 import co.edu.uniquindio.poo.biblioteca2.App;
 
-public class VisitanteController {
+public class DocenteController {
+
     private App app;
 
-    public void regresar(){
+    public void regresarPaginaPrincipal() {
         app.openViewPrincipal();
     }
 

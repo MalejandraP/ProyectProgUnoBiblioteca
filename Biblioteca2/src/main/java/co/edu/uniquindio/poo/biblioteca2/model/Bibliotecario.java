@@ -171,13 +171,9 @@ public class Bibliotecario extends Empleado{
     /**
      * Metodo para agregar un usuario a la lista, registrarlo
      * BOTON REGISTRAR USUARIO
-     * @param identificacion
      */
-    public void agregarUsuario(String nombre,String identificacion, String genero, String correo, String telefono, int edad, Tipo tipo, String credencial) {
-        biblioteca.agregarUsuario(nombre,identificacion,genero,correo,telefono,edad,tipo,credencial);
-    }
-    public void agregarUsuario(String nombre,String identificacion, String genero, String correo, String telefono, int edad, Tipo tipo) {
-        biblioteca.agregarUsuario(nombre,identificacion,genero,correo,telefono,edad,tipo);
+    public void agregarUsuario(Usuario usuario) {
+        biblioteca.agregarUsuario(usuario);
     }
 
     /**
@@ -202,14 +198,11 @@ public class Bibliotecario extends Empleado{
     /**
      * Metodo para agregar un libro a la lista
      * BOTON REGISTRAR LIBRO
-     * @param titulo
      */
-    public void agregarLibro(String titulo, String autor, String genero, String anioPublicacion,int solicitudes, boolean esFisico, EstadoLibro estado, String enlaceDescarga) {
-        biblioteca.agregarLibro(titulo, autor, genero, anioPublicacion, solicitudes, esFisico, estado, enlaceDescarga);
+    public void agregarLibro(Libro libro) {
+        biblioteca.agregarLibro(libro);
     }
-    public void agregarLibro(String titulo, String autor, String genero, String anioPublicacion,int solicitudes, boolean esFisico, EstadoLibro estado, String editorial, String ubicacionBiblioteca, int numeroPaginas) {
-        biblioteca.agregarLibro(titulo, autor, genero, anioPublicacion, solicitudes, esFisico, estado, editorial, ubicacionBiblioteca, numeroPaginas);
-    }
+
 
     /**
      * Metodo para actualizar la informacion de un libro ya existente
@@ -232,10 +225,9 @@ public class Bibliotecario extends Empleado{
      * Metodo para eliminar un prestamo de la lista
      * BOTON ELIMINAR PRESTAMO
      * @param id
-     * @param prestamo
      */
-    public void eliminarPrestamo(String id,Prestamo prestamo){
-        biblioteca.eliminarPrestamo(id, prestamo);
+    public void eliminarPrestamo(String id){
+        biblioteca.eliminarPrestamo(id);
     }
     /**
      * Metodo para actualizar la informacion de un prestamo ya existente
@@ -244,7 +236,7 @@ public class Bibliotecario extends Empleado{
      * @param prestamo
      */
     public void actualizarPrestamo(String id, Prestamo prestamo){
-        biblioteca.eliminarPrestamo(id, prestamo);
+        biblioteca.actualizarPrestamo(id, prestamo);
     }
 
     /**

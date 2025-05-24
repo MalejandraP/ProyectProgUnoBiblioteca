@@ -18,7 +18,7 @@ import java.io.IOException;
 public class App extends Application {
 
     private Stage primaryStage;
-    public static Biblioteca biblioteca = new Biblioteca("UQ", "Ca 6 La Patria", 0);
+    public static Biblioteca biblioteca = new Biblioteca("UQ", "Ca 6 La Patria");
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -60,6 +60,9 @@ public class App extends Application {
             loader.setLocation(App.class.getResource("crudAdministrador.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             AdministradorViewController administradorViewController = loader.getController();
+            AdministradorController administradorController = new AdministradorController();
+            administradorController.setApp(this);
+            administradorViewController.setAdministradorController(administradorController);
             administradorViewController.setApp(this);
 
             Scene scene = new Scene(rootLayout);
@@ -77,6 +80,9 @@ public class App extends Application {
             loader.setLocation(App.class.getResource("crudBibliotecario.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             BibliotecarioViewController bibliotecarioViewController = loader.getController();
+            BibliotecarioController bibliotecarioController = new BibliotecarioController();
+            bibliotecarioController.setApp(this);
+            bibliotecarioViewController.setBibliotecarioController(bibliotecarioController);
             bibliotecarioViewController.setApp(this);
 
             Scene scene = new Scene(rootLayout);
@@ -94,6 +100,9 @@ public class App extends Application {
             loader.setLocation(App.class.getResource("crudEstudiante.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             EstudianteViewController estudianteViewController = loader.getController();
+            EstudianteController estudianteController = new EstudianteController();
+            estudianteController.setApp(this);
+            estudianteViewController.setEstudianteController(estudianteController);
             estudianteViewController.setApp(this);
 
             Scene scene = new Scene(rootLayout);
@@ -111,6 +120,9 @@ public class App extends Application {
             loader.setLocation(App.class.getResource("crudDocente.fxml"));
             AnchorPane rootLayout = (AnchorPane) loader.load();
             DocenteViewController docenteViewController = loader.getController();
+            DocenteController docenteController = new DocenteController();
+            docenteController.setApp(this);
+            docenteViewController.setDocenteController(docenteController);
             docenteViewController.setApp(this);
 
             Scene scene = new Scene(rootLayout);
@@ -206,10 +218,18 @@ public class App extends Application {
     }
 
     public void inicializarData(){
-        Usuario visitante = new Visitante("Ramon", "12345678", "Masculino", "<EMAIL>", "666666666", 20, Tipo.VISITANTE);
-        LibroDigital libro = new LibroDigital("El principito", "Antoine de Saint Exupéry", "Masc", "1943", 2,true , EstadoLibro.DISPONIBLE, "omg");
-        biblioteca.agregarUsuario(visitante.getNombre(),visitante.getIdentificacion(), visitante.getGenero(), visitante.getCorreo(), visitante.getTelefono(), visitante.getEdad(), visitante.getTipo());
-        biblioteca.agregarLibro(libro.getTitulo(), libro.getAutor(), libro.getGenero(), libro.getAnioPublicacion(), libro.getSolicitudes(), libro.isEsFisico(), libro.getEstado(), libro.getEnlaceDescarga());
+        Usuario visitante1 = new Visitante("Ramon", "12345678", "Masculino", "<EMAIL>", "666666666", 20, Tipo.VISITANTE);
+        Bibliotecario bibliotecario1 = new Bibliotecario("Shaw", "63697", "masculino", "sahw@2", "2571", 25, 60000.0, Cargo.BIBLIOTECARIO);
+        Administrador administrador1 = new Administrador("Miguel", "5634", "masculino", "miguel@2", "25631", 42, 600.0, Cargo.ADMINISTRADOR);
+        Estudiante estudiante1 = new Estudiante("Samuelito", "1209", "Masc", "@miguelito123", "311", 20, Tipo.ESTUDIANTE, "7580");
+        Docente docente1 = new Docente("Jose", "1235", "Masculino", "<EMAIL>", "666666666", 20, Tipo.DOCENTE, "1234");
+        LibroDigital libroDig1 = new LibroDigital("El principito", "Antoine de Saint Exupéry", "Masc", "1943", 2,false , EstadoLibro.DISPONIBLE, "omg");
+        biblioteca.agregarUsuario(visitante1);
+        biblioteca.agregarEmpleado(bibliotecario1);
+        biblioteca.agregarEmpleado(administrador1);
+        biblioteca.agregarUsuario(estudiante1);
+        biblioteca.agregarUsuario(docente1);
+        biblioteca.agregarLibro(libroDig1);
 
     }
 }

@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.edu.uniquindio.poo.biblioteca2.CrudAdministrador"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.viewController.AdministradorViewController">
+   <children>
+      <Label layoutX="394.0" layoutY="34.0" text="Hola">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="lblNombreCambio" layoutX="437.0" layoutY="34.0" text="Nombre Administrador">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button fx:id="btnRegresar" layoutX="40.0" layoutY="30.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
+      <Button fx:id="btnGestionarEmpleado" layoutX="229.0" layoutY="175.0" mnemonicParsing="false" onAction="#onGestionarEmpleado" text="Gestión de empleado" />
+      <Button fx:id="btnCantidadEmpleadosEliminados" layoutX="201.0" layoutY="268.0" mnemonicParsing="false" onAction="#onCantidadEmpleadosEliminados" text="Cantidad Empleados Eliminados" />
+      <Label layoutX="215.0" layoutY="99.0" text="¿Qué deseas hacer?">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+   </children>
 </AnchorPane>

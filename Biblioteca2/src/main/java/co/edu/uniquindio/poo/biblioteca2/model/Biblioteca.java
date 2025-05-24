@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo.biblioteca2.model;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,8 @@ public class Biblioteca {
     private List<Administrador> listAdministradores;
     private int empleadoEliminados;
     private List<Libro>listLibros;
+    private List<Usuario> listUsuarios;
+    private List<Empleado> listEmpleados;
 
 
     public Biblioteca(String nombre, String direccion) {
@@ -31,6 +34,8 @@ public class Biblioteca {
         this.listAdministradores = new ArrayList<>();
         this.empleadoEliminados= 0;
         this.listLibros = new ArrayList<>();
+        this.listUsuarios = new ArrayList<>();
+        this.listEmpleados = new ArrayList<>();
     }
     public void actualizarListaLibros(){
         listLibros.clear();
@@ -65,7 +70,7 @@ public class Biblioteca {
             return;
         }
         Prestamo prestamo = new Prestamo(fecha, fechaMaximaDevolucion, fechaDevolucion, deuda, devuelto,id, libro, usuario);
-        agregarPrestamo(id, prestamo);
+        agregarPrestamo(prestamo);
         if (usuario instanceof Docente) {
             Docente docente = (Docente) usuario;
             if (!docente.puedePrestar(prestamo)) {
@@ -89,93 +94,82 @@ public class Biblioteca {
         }
     }
 
-    public boolean agregarEmpleado(String nombre, String identificacion, String genero, String correo, String telefono, int edad, double sueldo, Cargo cargo) {
+    /**
+     * Metodo para agregar un empleado a la lista segun su cargo
+     * @param empleado
+     * @return
+     */
+    public boolean agregarEmpleado(Empleado empleado) {
         boolean centinela = false;
-        if (!verificarEmpleado(identificacion)){
-            if (cargo == Cargo.BIBLIOTECARIO) {
-                Bibliotecario empleado = new Bibliotecario(nombre, identificacion, genero, correo, telefono, edad,sueldo, cargo);
-                listBibliotecarios.add(empleado);
+        if (!verificarEmpleado(empleado.getIdentificacion())){
+            if (empleado.getCargo() == Cargo.BIBLIOTECARIO) {
+                listBibliotecarios.add((Bibliotecario)empleado);
+                listEmpleados.add(empleado);
                 centinela = true;
             }
-            if (cargo == Cargo.ADMINISTRADOR) {
-                Administrador empleado = new Administrador(nombre, identificacion, genero, correo, telefono, edad,sueldo, cargo);
-                listAdministradores.add(empleado);
+            if (empleado.getCargo() == Cargo.ADMINISTRADOR) {
+                listAdministradores.add((Administrador) empleado);
+                listEmpleados.add(empleado);
                 centinela = true;
             }
         }
-        return centinela;
-    }
-    public boolean agregarUsuario(String nombre,String identificacion, String genero, String correo, String telefono, int edad, Tipo tipo, String credencial) {
-        boolean centinela = false;
-        if (!verificarUsuario(identificacion)) {
-            if (tipo == Tipo.ESTUDIANTE) {
-                Estudiante estudiante = new Estudiante(nombre, identificacion, genero, correo, telefono, edad, tipo, credencial);
-                listEstudiantes.add(estudiante);
-                centinela = true;
-            }
-            if (tipo == Tipo.DOCENTE) {
-                Docente docente = new Docente(nombre, identificacion, genero, correo, telefono, edad, tipo, credencial);
-                listDocentes.add(docente);
-                centinela = true;
-            }
-            else{
-                System.out.println("Hey, los visitantes no tienen credencial");
-            }
-        }
-        return centinela;
-    }
-    public boolean agregarUsuario(String nombre,String identificacion, String genero, String correo, String telefono, int edad, Tipo tipo){
-        boolean centinela = false;
-        if (!verificarUsuario(identificacion)){
-            if (tipo == Tipo.VISITANTE){
-                Visitante visitante = new Visitante(nombre, identificacion, genero, correo, telefono, edad, tipo);
-                listVisitantes.add(visitante);
-                centinela = true;
-            }
-            else{
-                System.out.println("Hey, no eres visitante, estas infiltrado");
-            }
+        else{
+            JOptionPane.showMessageDialog(null, "Hey, ya hay un empleado con ese identificacion");
         }
         return centinela;
     }
 
     /**
-     * Sobrecarga de metodos, agregarLibro
-     * @param titulo
-     * @param autor
-     * @param genero
-     * @param anioPublicacion
-     * @param solicitudes
-     * @param esFisico
-     * @param estado
-     * @param enlaceDescarga
+     * Metodo para agregar un usuario a la lista segun su tipo
+     * @param usuario
      * @return
      */
-    public boolean agregarLibro(String titulo, String autor, String genero, String anioPublicacion,int solicitudes,boolean esFisico,EstadoLibro estado, String enlaceDescarga) {
+    public boolean agregarUsuario(Usuario usuario) {
         boolean centinela = false;
-        if (!verificarLibro(titulo)) {
-            if(!esFisico){
-                LibroDigital libroDigital = new LibroDigital(titulo, autor, genero, anioPublicacion, solicitudes, esFisico, estado, enlaceDescarga);
-                listLibrosDigitales.add(libroDigital);
+        if (!verificarUsuario(usuario.getIdentificacion())) {
+            if (usuario.getTipo() == Tipo.ESTUDIANTE) {
+                listEstudiantes.add((Estudiante) usuario);
+                listUsuarios.add(usuario);
                 centinela = true;
             }
-            else{
-                System.out.println("Hey, esto es para libros digitales");
+            if (usuario.getTipo() == Tipo.DOCENTE) {
+                listDocentes.add((Docente) usuario);
+                listUsuarios.add(usuario);
+                centinela = true;
             }
+            if(usuario.getTipo() == Tipo.VISITANTE){
+                listVisitantes.add((Visitante) usuario);
+                listUsuarios.add(usuario);
+                centinela = true;
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Hey, ya hay un usuario con ese identificacion");
         }
         return centinela;
     }
-    public boolean agregarLibro(String titulo, String autor, String genero, String anioPublicacion,int solicitudes,boolean esFisico, EstadoLibro estado, String editorial, String ubicacionBiblioteca, int numeroPaginas){
+
+    /**
+     * Metodo para agregar un libro a la lista segun su tipo
+      * @param libro
+     * @return
+     */
+    public boolean agregarLibro(Libro libro){
         boolean centinela = false;
-        if (!verificarLibro(titulo)) {
-            if(esFisico){
-                LibroFisico libroFisico = new LibroFisico(titulo, autor, genero, anioPublicacion, solicitudes, esFisico, estado, editorial, ubicacionBiblioteca, numeroPaginas);
-                listLibrosFisicos.add(libroFisico);
+        if (!verificarLibro(libro.getTitulo())) {
+            if(libro.isEsFisico()){
+                listLibrosFisicos.add((LibroFisico) libro);
+                listLibros.add(libro);
                 centinela = true;
             }
             else{
-                System.out.println("Hey, esto es para libros fisicos");
+                listLibrosDigitales.add((LibroDigital) libro);
+                listLibros.add(libro);
+                centinela = true;
             }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Hey, ya hay un libro con ese titulo");
         }
         return centinela;
     }
@@ -241,6 +235,7 @@ public class Biblioteca {
         for (LibroDigital libroDigital : listLibrosDigitales) {
             if (libroDigital.getTitulo().equals(titulo)) {
                 listLibrosDigitales.remove(libroDigital);
+                listLibros.remove(libroDigital);
                 libroEliminado = true;
                 break;
             }
@@ -248,6 +243,7 @@ public class Biblioteca {
         for (LibroFisico libroFisico : listLibrosFisicos) {
             if (libroFisico.getTitulo().equals(titulo)) {
                 listLibrosFisicos.remove(libroFisico);
+                listLibros.remove(libroFisico);
                 libroEliminado = true;
                 break;
             }
@@ -261,6 +257,7 @@ public class Biblioteca {
         for (Bibliotecario b : listBibliotecarios) {
             if (b.getIdentificacion().equals(identificacion)) {
                 listBibliotecarios.remove(b);
+                listEmpleados.remove(b);
                 centinela = true;
                 empleadoEliminados++;
                 break;
@@ -269,6 +266,7 @@ public class Biblioteca {
         for (Administrador a : listAdministradores) {
             if (a.getIdentificacion().equals(identificacion)) {
                 listAdministradores.remove(a);
+                listEmpleados.remove(a);
                 centinela = true;
                 empleadoEliminados++;
                 break;
@@ -282,6 +280,7 @@ public class Biblioteca {
         for (Estudiante e : listEstudiantes) {
             if (e.getIdentificacion().equals(identificacion)) {
                 listEstudiantes.remove(e);
+                listUsuarios.remove(e);
                 centinela = true;
                 break;
             }
@@ -289,6 +288,7 @@ public class Biblioteca {
         for (Docente d : listDocentes) {
             if (d.getIdentificacion().equals(identificacion)) {
                 listDocentes.remove(d);
+                listUsuarios.remove(d);
                 centinela = true;
                 break;
             }
@@ -296,6 +296,7 @@ public class Biblioteca {
         for (Visitante v : listVisitantes) {
             if (v.getIdentificacion().equals(identificacion)) {
                 listVisitantes.remove(v);
+                listUsuarios.remove(v);
                 centinela = true;
             }
         }
@@ -387,6 +388,9 @@ public class Biblioteca {
                 libroDigital.setAutor(actualizado.getAutor());
                 libroDigital.setGenero(actualizado.getGenero());
                 libroDigital.setAnioPublicacion(actualizado.getAnioPublicacion());
+                libroDigital.setSolicitudes(actualizado.getSolicitudes());
+                libroDigital.setEsFisico(actualizado.isEsFisico());
+                libroDigital.setEstado(actualizado.getEstado());
                 libroDigital.setEnlaceDescarga(((LibroDigital)actualizado).getEnlaceDescarga());
                 centinela = true;
                 break;
@@ -398,6 +402,9 @@ public class Biblioteca {
                 libroFisico.setAutor(actualizado.getAutor());
                 libroFisico.setGenero(actualizado.getGenero());
                 libroFisico.setAnioPublicacion(actualizado.getAnioPublicacion());
+                libroFisico.setSolicitudes(actualizado.getSolicitudes());
+                libroFisico.setEsFisico(actualizado.isEsFisico());
+                libroFisico.setEstado(actualizado.getEstado());
                 libroFisico.setEditorial(((LibroFisico)actualizado).getEditorial());
                 libroFisico.setUbicacionBiblioteca(((LibroFisico)actualizado).getUbicacionBiblioteca());
                 libroFisico.setNumeroPaginas(((LibroFisico)actualizado).getNumeroPaginas());
@@ -425,7 +432,7 @@ public class Biblioteca {
         return centinela;
     }
 
-    public boolean eliminarPrestamo(String id,Prestamo prestamo) {
+    public boolean eliminarPrestamo(String id) {
         boolean centinela = false;
         for (Prestamo p: listPrestamos) {
             if (p.getId().equals(id)) {
@@ -437,10 +444,10 @@ public class Biblioteca {
         return centinela;
     }
 
-    public boolean agregarPrestamo(String id,Prestamo prestamo) {
+    public boolean agregarPrestamo(Prestamo prestamo) {
         boolean centinela = false;
         for (Prestamo p: listPrestamos) {
-            if (!verificarPrestamo(id)) {
+            if (!verificarPrestamo(prestamo.getId())) {
                 listPrestamos.add(p);
                 centinela = true;
                 break;
@@ -602,6 +609,22 @@ public class Biblioteca {
 
     public void setListLibros(List<Libro> listLibros) {
         this.listLibros = listLibros;
+    }
+
+    public List<Usuario> getListUsuarios() {
+        return listUsuarios;
+    }
+
+    public void setListUsuarios(List<Usuario> listUsuarios) {
+        this.listUsuarios = listUsuarios;
+    }
+
+    public List<Empleado> getListEmpleados() {
+        return listEmpleados;
+    }
+
+    public void setListEmpleados(List<Empleado> listEmpleados) {
+        this.listEmpleados = listEmpleados;
     }
 
     /**
