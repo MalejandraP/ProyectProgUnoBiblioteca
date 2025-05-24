@@ -19,12 +19,12 @@ public class Administrador extends Empleado{
         double porcentajeDeUsuariosNoDeudores = (cantUsuariosNoDeudores*100)/listUsuarios.size();
         return porcentajeDeUsuariosNoDeudores;
     }
-    public reporteUsuariosEliminados(){
+    public int reporteUsuariosEliminados(){
         int eliminados= biblioteca.getUsuariosEliminados();
         return eliminados;
     }
-    public reporteCantidadUsuarios(){
-        int cantidadUsuarios= biblioteca.getListPrestamos().size();
+    public int reporteCantidadUsuarios(){
+        int cantidadUsuarios= biblioteca.getListUsuarios().size();
         return cantidadUsuarios;
     }
 
