@@ -53,7 +53,7 @@ public class BibliotecaTest {
         Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO")
         LibroDigital libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", 5, EstadoLibro.DISPONIBLE,"https.com" );
         biblioteca.agregarLibro(libro1);
-        assertNotNull(libro1);
+        assertNotNull(biblioteca.buscarlibro(libro1.getTitulo));
     }
     
     @Test
