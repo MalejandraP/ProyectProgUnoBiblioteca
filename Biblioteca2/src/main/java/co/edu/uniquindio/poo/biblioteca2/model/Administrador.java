@@ -21,7 +21,7 @@ public class Administrador extends Empleado{
         return porcentajeDeUsuariosNoDeudores;
     }
     public int reporteEmpleadosEliminados(){
-        int eliminados= biblioteca.getEmpleadosEliminados();
+        int eliminados= biblioteca.getEmpleadoEliminados();
         return eliminados;
     }
     public int reporteCantidadUsuarios(){
