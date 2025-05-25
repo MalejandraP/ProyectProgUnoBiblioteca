@@ -176,11 +176,11 @@ public class Bibliotecario extends Empleado{
      * Metodo para generar reporte de la lista de usuarios con una deuda mayor a 0
      * @return
      */
-    public List<Usuario> reporteUsuariosDeudores() {
+    public List<Usuario> reporteUsuariosDeudores(LocalDate fechaDevolucion) {
         List<Usuario> listUsuariosDeudores = new ArrayList<>();
         for (Usuario u : listUsuarios){
             String identificacion = u.getIdentificacion();
-            if(calculaDeudaTotal(identificacion) > 0){
+            if(calculaDeudaTotal(identificacion, fechaDevolucion) > 0){
                 listUsuariosDeudores.add(u);
             }
         }
