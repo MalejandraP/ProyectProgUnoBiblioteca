@@ -23,6 +23,11 @@ class BibliotecarioTest {
 
     @Test
     void devolverLibro() {
+        Biblioteca biblioteca= new Biblioteca("Bookstore", "Londres");
+        LibroDigital libro6= new LibroDigital("La Divina Comedia", "Dante Aliegheri", "Ficción","1350", false, EstadoLibro.DISPONIBLE,"LINK");
+        Estudiante estudiante1= new Estudiante("Emanuel", "1024830","masculino", "emanuel@","314526",17, tipo.ESTUDIANTE,"2401");
+        Prestamo prestamo1= new Prestamo()
+        
     }
 
     @Test
