@@ -12,6 +12,7 @@ public class Administrador extends Empleado{
     public Administrador(String nombre, String identificacion, String genero, String correo, String telefono, int edad, double sueldo, Cargo cargo ) {
         super(nombre, identificacion, genero, correo, telefono, edad, sueldo, cargo);
         this.bibliotecario = bibliotecario;
+        
     }
 
     public int reportePorcentajeDeUsuariosNoDeudores(){
