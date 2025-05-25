@@ -64,7 +64,19 @@ class BibliotecarioTest {
 
     @Test
     void reporteLibrosPrestados() {
-        
+        Biblioteca biblioteca= new Biblioteca("Le petit prince", "Francia");
+        LibroDigital libro9= new LibroDigital("Hamlet", "William Shakespaeare", "Drama", "1560", false,  EstadoLibro.DISPONIBLE,"https.hamlet.com");
+        LibroDigital libro10= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", false, EstadoLibro.DISPONIBLE,"https.com" );
+        LibroFisico libro11 = new LibroFisico("Rey Lear", "William Shakeapeare", "drama", "1580",true, EstadoLibro.DISPONIBLE, "librosSuperPro", "carrera 4", 120);
+        Estudiante estudiante1= new Estudiante("Emanuel", "1024830","masculino", "emanuel@","314526",17, tipo.ESTUDIANTE,"2401");
+        Docente docente1= new Docente("Victor", "24830","masculino", "emanuel@","314926",47, tipo.DOCENTE,"27301");
+        biblioteca.agregarLibro(libro9);
+        biblioteca.agregarLibro(libro10);
+        biblioteca.agregarLibro(libro11);
+        Prestamo prestamo1= new Prestamo(LocalDate.of(2025,2,8), "96375", libro9, estudiante1);
+        Prestamo prestamo2= new Prestamo(LocalDate.of(2025,5,4), "9025", libro10, docente1);
+        List<Libro> listEsperados= List.of(libro9, libro10);
+        assertIterableEquals(listEsperados, biblioteca.reporteLibrosPrestados());
         
     }
 
