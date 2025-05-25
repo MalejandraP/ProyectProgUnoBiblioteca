@@ -119,7 +119,7 @@ class BibliotecarioTest {
         biblioteca.agregarPrestamo(prestamo1);
         biblioteca.agregarPrestamo(prestamo2);
         List<Usuario> listEsperados = List.of(estudiante4, docente5);
-        assertIterableEquals(listEsperados, )
+        assertIterableEquals(listEsperados, biblioteca.reporteUsuariosDeudores(LocalDate(2025,5,3)));
         
     }
 }
