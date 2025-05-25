@@ -20,10 +20,10 @@ public class ListaLibrosController {
                 app.openCrudLibroDigital((LibroDigital) libro);
                 return true;
             }
-
         }
         return false;
     }
+
     public void regresar(){
         app.openViewPrincipal();
     }

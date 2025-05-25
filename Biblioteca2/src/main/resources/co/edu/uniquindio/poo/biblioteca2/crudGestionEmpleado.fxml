@@ -9,14 +9,14 @@
       <Button fx:id="btnRegresar" layoutX="37.0" layoutY="33.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
       <TableView fx:id="tbvGestionEmpleados" layoutX="37.0" layoutY="82.0" prefHeight="344.0" prefWidth="565.0">
         <columns>
-          <TableColumn prefWidth="65.0" text="Nombre" />
-          <TableColumn prefWidth="64.0" text="Id" />
-            <TableColumn prefWidth="63.0" text="Genero" />
-            <TableColumn prefWidth="108.0" text="Correo" />
-            <TableColumn prefWidth="75.0" text="Teléfono" />
-            <TableColumn prefWidth="54.0" text="Edad" />
-            <TableColumn prefWidth="67.0" text="Sueldo" />
-            <TableColumn prefWidth="71.0" text="Cargo" />
+          <TableColumn fx:id="tbcNombre" prefWidth="65.0" text="Nombre" />
+          <TableColumn fx:id="tbcId" prefWidth="64.0" text="Id" />
+            <TableColumn fx:id="tbcGenero" prefWidth="63.0" text="Genero" />
+            <TableColumn fx:id="tbcCorreo" prefWidth="108.0" text="Correo" />
+            <TableColumn fx:id="tbcTelefono" prefWidth="75.0" text="Teléfono" />
+            <TableColumn fx:id="tbcEdad" prefWidth="54.0" text="Edad" />
+            <TableColumn fx:id="tbcSueldo" prefWidth="67.0" text="Sueldo" />
+            <TableColumn fx:id="tbcCargo" prefWidth="71.0" text="Cargo" />
         </columns>
       </TableView>
       <Separator layoutX="628.0" layoutY="69.0" orientation="VERTICAL" prefHeight="420.0" prefWidth="4.0" />

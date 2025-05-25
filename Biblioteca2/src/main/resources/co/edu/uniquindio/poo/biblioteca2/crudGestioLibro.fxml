@@ -6,8 +6,8 @@
 
 <AnchorPane prefHeight="502.0" prefWidth="1046.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.viewController.GestionLibroViewController">
    <children>
-      <Button layoutX="27.0" layoutY="27.0" mnemonicParsing="false" text="Regresar" />
-      <TableView layoutX="37.0" layoutY="136.0" prefHeight="265.0" prefWidth="450.0">
+      <Button fx:id="btnRegresar" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
+      <TableView fx:id="tblGestionLibro" layoutX="37.0" layoutY="136.0" prefHeight="265.0" prefWidth="450.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Titulo" />
           <TableColumn prefWidth="75.0" text="Autor" />
@@ -45,15 +45,23 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <ComboBox layoutX="736.0" layoutY="324.0" prefWidth="150.0" />
-      <Button layoutX="810.0" layoutY="111.0" mnemonicParsing="false" text="Cargar" />
-      <TextField layoutX="736.0" layoutY="163.0" />
-      <TextField layoutX="736.0" layoutY="203.0" />
-      <TextField layoutX="736.0" layoutY="244.0" />
-      <TextField layoutX="736.0" layoutY="286.0" />
+      <ComboBox fx:id="cbxEstado" layoutX="736.0" layoutY="324.0" prefWidth="150.0" />
+      <TextField fx:id="txtTitulo" layoutX="736.0" layoutY="163.0" />
+      <TextField fx:id="txtAutor" layoutX="736.0" layoutY="203.0" />
+      <TextField fx:id="txtGenero" layoutX="736.0" layoutY="244.0" />
+      <TextField fx:id="txtAnioPublicacion" layoutX="736.0" layoutY="286.0" />
       <Separator layoutX="520.0" layoutY="99.0" orientation="VERTICAL" prefHeight="380.0" prefWidth="6.0" />
-      <Button layoutX="938.0" layoutY="176.0" mnemonicParsing="false" text="Agregar" />
-      <Button layoutX="938.0" layoutY="235.0" mnemonicParsing="false" text="Actualizar" />
-      <Button layoutX="210.0" layoutY="441.0" mnemonicParsing="false" text="Eliminar" />
+      <Button fx:id="btnAgregar" layoutX="938.0" layoutY="176.0" mnemonicParsing="false" onAction="#onAgregar" text="Agregar" />
+      <Button fx:id="btnActualizar" layoutX="938.0" layoutY="235.0" mnemonicParsing="false" onAction="#onActualizar" text="Actualizar" />
+      <Button fx:id="btnEliminar" layoutX="210.0" layoutY="441.0" mnemonicParsing="false" onAction="#onEliminar" text="Eliminar" />
+      <CheckBox fx:id="chbEsFisico" layoutX="723.0" layoutY="115.0" mnemonicParsing="false" text="si" />
+      <Label fx:id="lblEditorial" layoutX="660.0" layoutY="368.0" text="Editorial:" visible="false" />
+      <Label fx:id="lblUbicacion" layoutX="652.0" layoutY="409.0" text="Ubicacion:" visible="false" />
+      <Label fx:id="lblCantPaginas" layoutX="643.0" layoutY="451.0" text="Cant Paginas:" visible="false" />
+      <Label fx:id="lblEnlaceDescarga" layoutX="616.0" layoutY="397.0" text="Enlace Descarga:" visible="false" />
+      <TextField fx:id="txtEditorial" layoutX="737.0" layoutY="364.0" visible="false" />
+      <TextField fx:id="txtUbicacion" layoutX="737.0" layoutY="405.0" visible="false" />
+      <TextField fx:id="txtCantPaginas" layoutX="737.0" layoutY="447.0" visible="false" />
+      <TextField fx:id="txtEnlaceDescarga" layoutX="737.0" layoutY="389.0" visible="false" />
    </children>
 </AnchorPane>

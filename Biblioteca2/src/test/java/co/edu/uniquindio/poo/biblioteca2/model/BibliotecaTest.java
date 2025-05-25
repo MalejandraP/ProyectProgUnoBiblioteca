@@ -31,13 +31,13 @@ public class BibliotecaTest {
     @Test
     void agregarUsuario() {
         Biblioteca biblioteca= new Biblioteca("Howard","Clementina");
-        Docente docente2=new Docente("Carlos", "524", "masculino","carlos@", "314", 35, tipo.DOCENTE, "547");
+        Docente docente2=new Docente("Carlos", "524", "masculino","carlos@", "314", 35, Tipo.DOCENTE, "547");
         assertTrue(biblioteca.agregarUsuario(docente2);
     }
     @Test
     void agregarLibro() {
         Biblioteca biblioteca= new Biblioteca("Harvard","La Gran Manzana");
-        LibroFisico libro2= new LibroFisico("Cien años de soledad", "Gabo", "historia", "1980", 4, EstadoLibro.DISPONIBLE, "librosSuperPro", "carrera 8", "350");
+        LibroFisico libro2= new LibroFisico("Cien años de soledad", "Gabo", "historia", "1980", true, EstadoLibro.DISPONIBLE, "librosSuperPro", "carrera 8", 350);
         biblioteca.agregarLibro(libro2);
         assertFalse(biblioteca.agregarLibro(libro2));
         

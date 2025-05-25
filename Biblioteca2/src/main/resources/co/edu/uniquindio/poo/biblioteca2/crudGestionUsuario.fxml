@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="502.0" prefWidth="1046.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.viewController.GestionUsuarioViewController">
+   <children>
+      <Button fx:id="btnRegresar" layoutX="37.0" layoutY="33.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
+      <TableView layoutX="37.0" layoutY="82.0" prefHeight="344.0" prefWidth="526.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Nombre" />
+          <TableColumn prefWidth="75.0" text="Id" />
+            <TableColumn prefWidth="75.0" text="Genero" />
+            <TableColumn prefWidth="75.0" text="Correo" />
+            <TableColumn prefWidth="75.0" text="Teléfono" />
+            <TableColumn prefWidth="75.0" text="Edad" />
+            <TableColumn prefWidth="75.0" text="Tipo" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAgregar" layoutX="947.0" layoutY="183.0" mnemonicParsing="false" onAction="#onAgregar" text="Agregar" />
+      <Button fx:id="btnActualizar" layoutX="943.0" layoutY="273.0" mnemonicParsing="false" onAction="#onActualizar" text="Actualizar" />
+      <Button fx:id="btnEliminar" layoutX="271.0" layoutY="439.0" mnemonicParsing="false" onAction="#onEliminar" text="Eliminar" />
+      <ComboBox fx:id="cbxTipo" layoutX="751.0" layoutY="78.0" prefWidth="150.0" promptText="Elija su tipo" />
+      <TextField fx:id="txtNombre" layoutX="751.0" layoutY="174.0" prefHeight="25.0" prefWidth="103.0" />
+      <TextField fx:id="txtCorreo" layoutX="751.0" layoutY="273.0" prefHeight="25.0" prefWidth="103.0" />
+      <TextField fx:id="txtCredencial" layoutX="751.0" layoutY="414.0" prefHeight="25.0" prefWidth="103.0" visible="false" />
+      <TextField fx:id="txtEdad" layoutX="751.0" layoutY="365.0" prefHeight="25.0" prefWidth="103.0" />
+      <TextField fx:id="txtTelefono" layoutX="751.0" layoutY="318.0" prefHeight="25.0" prefWidth="103.0" />
+      <TextField fx:id="txtGenero" layoutX="751.0" layoutY="224.0" prefHeight="25.0" prefWidth="103.0" />
+      <TextField fx:id="txtIdentificacion" layoutX="751.0" layoutY="124.0" prefHeight="25.0" prefWidth="103.0" />
+      <Label layoutX="675.0" layoutY="82.0" text="Tipo:" />
+      <Label layoutX="670.0" layoutY="178.0" text="Nombre:" />
+      <Label layoutX="656.0" layoutY="128.0" text="Identificacion:" />
+      <Label layoutX="672.0" layoutY="228.0" text="Genero:" />
+      <Label layoutX="672.0" layoutY="277.0" text="Correo:" />
+      <Label layoutX="667.0" layoutY="322.0" text="Telefono:" />
+      <Label layoutX="679.0" layoutY="369.0" text="Edad:" />
+      <Label fx:id="lblCredencial" layoutX="674.0" layoutY="418.0" text="Credencial:" visible="false" />
+      <Separator layoutX="593.0" layoutY="74.0" orientation="VERTICAL" prefHeight="413.0" prefWidth="8.0" />
+      <Label layoutX="434.0" layoutY="28.0" text="Gestión Usuarios">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

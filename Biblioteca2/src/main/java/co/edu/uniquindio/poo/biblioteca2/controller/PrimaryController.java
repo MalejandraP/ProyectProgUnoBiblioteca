@@ -24,11 +24,14 @@ public class PrimaryController {
         if(empleado != null){
             Cargo cargo = empleado.getCargo();
             if(cargo == Cargo.ADMINISTRADOR){
-                app.openCrudAdministrador();
+                Administrador administrador = (Administrador) empleado;
+                administrador.setListUsuarios(biblioteca.getListUsuarios());
+                app.openCrudAdministrador(administrador);
                 return true;
             }
             if(cargo == Cargo.BIBLIOTECARIO){
-                app.openCrudBibliotecario();
+                Bibliotecario bibliotecario = (Bibliotecario) empleado;
+                app.openCrudBibliotecario(bibliotecario);
                 return true;
             }
         }
@@ -36,15 +39,18 @@ public class PrimaryController {
         if(usuario != null){
             Tipo tipo = usuario.getTipo();
             if (tipo == Tipo.ESTUDIANTE){
-                app.openCrudEstudiante();
+                Estudiante estudiante = (Estudiante) usuario;
+                app.openCrudEstudiante(estudiante);
                 return true;
             }
             if(tipo == Tipo.DOCENTE){
-                app.openCrudDocente();
+                Docente docente = (Docente) usuario;
+                app.openCrudDocente(docente);
                 return true;
             }
             if (tipo == Tipo.VISITANTE){
-                app.openCrudVisitante();
+                Visitante visitante = (Visitante) usuario;
+                app.openCrudVisitante(visitante);
                 return true;
             }
         }

@@ -15,13 +15,16 @@ public class Docente extends Usuario implements GestionPrestamo{
         assert credencial != null;
     }
     @Override
-    public boolean puedePrestar(Prestamo prestamo) {
+    public boolean puedePrestarCantidadLibros(Prestamo prestamo) {
         boolean centinela = true;
+        int prestamosSinDevolver = 0;
         for (Prestamo p : listPrestamos) {
             if (p.isDevuelto()) {
-                centinela = false;
-                break;
+                prestamosSinDevolver++;
             }
+        }
+        if(prestamosSinDevolver > 10){
+            centinela = false;
         }
         return centinela;
     }

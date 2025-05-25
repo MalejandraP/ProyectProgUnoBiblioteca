@@ -16,10 +16,12 @@ public class BibliotecarioViewController {
     private Button btnRegresar, btnGestionarUsuario, btnGestionarLibro, btnRealizarPrestamo, btnDevolverLibro, btnUsuariosDeudores, btnLibrosMasSolicitados;
 
     @FXML
-    void onGestionarUsuario(){}
+    void onGestionarUsuario(){
+        irAGestionUsuario();
+    }
     @FXML
     void onGestionarLibro(){
-        irAGestion();
+        irAGestionLibro();
     }
     @FXML
     void onRealizarPrestamo(){}
@@ -51,7 +53,11 @@ public class BibliotecarioViewController {
         bibliotecarioController.regresarPaginaPrincipal();
     }
     @FXML
-    private void irAGestion(){
+    private void irAGestionLibro(){
         bibliotecarioController.abrirGestionLibro();
+    }
+    @FXML
+    private void irAGestionUsuario(){
+        bibliotecarioController.abrirGestionUsuario();
     }
 }

@@ -70,7 +70,7 @@ public class Biblioteca {
         agregarPrestamo(prestamo);
         if (usuario instanceof Docente) {
             Docente docente = (Docente) usuario;
-            if (!docente.puedePrestar(prestamo)) {
+            if (!docente.puedePrestarCantidadLibros(prestamo)) {
                 System.out.println("El docente tiene libros pendientes de devolver.");
                 return;
             }
@@ -79,7 +79,7 @@ public class Biblioteca {
             System.out.println("Préstamo realizado con éxito para docente.");
         } else if (usuario instanceof Estudiante) {
             Estudiante estudiante = (Estudiante) usuario;
-            if (!estudiante.puedePrestar(prestamo)) {
+            if (!estudiante.puedePrestarCantidadLibros(prestamo)) {
                 System.out.println("El estudiante tiene libros pendientes de devolver.");
                 return;
             }
@@ -110,9 +110,6 @@ public class Biblioteca {
                 centinela = true;
             }
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Hey, ya hay un empleado con ese identificacion");
-        }
         return centinela;
     }
 
@@ -140,9 +137,6 @@ public class Biblioteca {
                 centinela = true;
             }
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Hey, ya hay un usuario con ese identificacion");
-        }
         return centinela;
     }
 
@@ -164,9 +158,6 @@ public class Biblioteca {
                 listLibros.add(libro);
                 centinela = true;
             }
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Hey, ya hay un libro con ese titulo");
         }
         return centinela;
     }
