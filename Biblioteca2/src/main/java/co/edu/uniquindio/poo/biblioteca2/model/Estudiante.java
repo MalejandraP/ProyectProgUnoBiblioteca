@@ -38,6 +38,23 @@ public class Estudiante extends Usuario implements GestionPrestamo{
     public void agregarPrestamo(Prestamo prestamo) {
         listPrestamos.add(prestamo);
     }
+    @Override 
+    public boolean puedePrestarCantidadlibros(Prestamo prestamo){
+        boolean centinela = true; 
+        int prestamosSinDevolver=0
+        for(Prestamo p: listPrestamos){
+            if(!p.isDevuelto()){
+                prestamosSinDevolver++;
+            }
+        }
+        if (prestamosSinDevolver>5){
+            centinela=false;
+        }
+        return centinela;
+        
+    }
+    
+
 
 
     public List<Prestamo> getListPrestamos() {

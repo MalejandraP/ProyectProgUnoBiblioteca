@@ -1,6 +1,5 @@
 package co.edu.uniquindio.poo.biblioteca2.model;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -32,7 +31,6 @@ public class Bibliotecario extends Empleado{
         this.prestamo = prestamo;
         this.biblioteca = biblioteca;
         this.listLibros = listLibros;
-        this.listUsuarios = listUsuarios;
     }
 
 
@@ -77,46 +75,43 @@ public class Bibliotecario extends Empleado{
      * Metodo para calcular la deuda contando los días desde que se vencio el plazo de devolucion hasta la fecha de devolucion
      * HECHO
      * BOTON CARGAR
+     * @param fechaDevolucion
      * @return
      */
-    public double calcularDeuda(String id, LocalDate fechaActual){
+    public double calcularDeuda(String id, LocalDate fechaDevolucion){
         double deudaDiaria = 2000;
         double deudaFinal = 0;
-        Prestamo p = biblioteca.buscarPrestamo(id);
+        LocalDate fechaMaximaDev = prestamo.getFechaMaximaDevolucion();
         if(biblioteca.verificarPrestamo(id)){
-            LocalDate fechaMaximaDev = p.getFechaMaximaDevolucion();
-            if (fechaMaximaDev.isBefore(fechaActual)) {
-                deudaFinal = deudaDiaria * ChronoUnit.DAYS.between(fechaMaximaDev, fechaActual);
+            prestamo.setFechaDevolucion(fechaDevolucion);
+            if (fechaMaximaDev.isBefore(fechaDevolucion)) {
+                deudaFinal = deudaDiaria * ChronoUnit.DAYS.between(fechaMaximaDev, fechaDevolucion);
                 prestamo.setDeuda(deudaFinal);
             }
         }
         return deudaFinal;
     }
-
-    public boolean puedePrestarDeuda(String identificacion, LocalDate fechaDevolucion) {
-        boolean centinela = true;
-        Usuario usuario = biblioteca.buscarUsuario(identificacion);
+    public boolean puedePrestarDeuda(String id, LocalDate fechaDevolucion){
+        boolean centinela= true;
+        Usuario usuario= buscarUsuario(id);
+        List<Prestamo> listPrestamosU= usuario.getlistPrestamos;
+        for(Prestamo p: listPrestamosU){
         if (usuario instanceof Estudiante){
             Estudiante estudiante = (Estudiante) usuario;
-            List<Prestamo> listPrestamosE = estudiante.getListPrestamos();
-            for (Prestamo p : listPrestamosE) {
-                if (!estudiante.puedePrestarCantidadLibros(p) || calcularDeudaTotal(identificacion, fechaDevolucion) > 0) {
-                    centinela = false;
-                }
+            if(!estudiante.puedePrestarCantidadLibros(p) || calcularDeudaTotal(id)>0){
+                centinela= false;
             }
         }
-         else if (usuario instanceof Docente) {
+        else if(usuario instanceof Docente){
             Docente docente = (Docente) usuario;
-            List<Prestamo> listPrestamosD = docente.getListPrestamos();
-            for (Prestamo p : listPrestamosD) {
-                if (!docente.puedePrestarCantidadLibros(p) || calcularDeudaTotal(identificacion, fechaDevolucion) > 0) {
-                    centinela = false;
-                }
-            }
-
+            if(!docente.puedePrestarCantidadLibros(p) || calcularDeudaTotal(id)>0){
+                centinela= false;
         }
-         return centinela;
+        }
+            
+        return centinela;
     }
+
     /**
      * Metodo para hallar el o los libros más solicitados (que tengan mayot cantidad de solicitudes)
      * @return
@@ -153,15 +148,15 @@ public class Bibliotecario extends Empleado{
     /**
      *  Metodo para calcular la deuda en total de la lista de prestamos que tiene cada usuario
      */
-    public double calcularDeudaTotal(String identificacion, LocalDate fechaActual){
+    public double calculaDeudaTotal(String identificacion, LocalDate fechaDevolucion){
         double deudaTotal = 0;
         Usuario u = biblioteca.buscarUsuario(identificacion);
         if(u instanceof Estudiante){
             Estudiante e = (Estudiante) u;
             List<Prestamo> prestamosDeU = e.getListPrestamos();
             for (Prestamo p : prestamosDeU){
-                if (calcularDeuda(p.getId(), fechaActual) >0){
-                    deudaTotal += calcularDeuda(p.getId(), fechaActual);
+                if (calcularDeuda(p.getId(), fechaDevolucion) >0){
+                    deudaTotal += calcularDeuda(p.getId(), fechaDevolucion);
                 }
             }
         }
@@ -169,8 +164,8 @@ public class Bibliotecario extends Empleado{
             Docente d = (Docente) u;
             List<Prestamo> prestamosDeU = d.getListPrestamos();
             for (Prestamo p : prestamosDeU){
-                if (calcularDeuda(p.getId(), fechaActual) >0){
-                    deudaTotal += calcularDeuda(p.getId(), fechaActual);
+                if (calcularDeuda(p.getId(), fechaDevolucion) >0){
+                    deudaTotal += calcularDeuda(p.getId(), fechaDevolucion);
                 }
             }
         }
@@ -181,11 +176,11 @@ public class Bibliotecario extends Empleado{
      * Metodo para generar reporte de la lista de usuarios con una deuda mayor a 0
      * @return
      */
-    public List<Usuario> reporteUsuariosDeudores(LocalDate fechaActual) {
+    public List<Usuario> reporteUsuariosDeudores(LocalDate fechaDevolucion) {
         List<Usuario> listUsuariosDeudores = new ArrayList<>();
         for (Usuario u : listUsuarios){
             String identificacion = u.getIdentificacion();
-            if(calcularDeudaTotal(identificacion, fechaActual) > 0){
+            if(calculaDeudaTotal(identificacion, fechaDevolucion) > 0){
                 listUsuariosDeudores.add(u);
             }
         }
@@ -198,12 +193,7 @@ public class Bibliotecario extends Empleado{
      * BOTON REGISTRAR USUARIO
      */
     public void agregarUsuario(Usuario usuario) {
-        if(!biblioteca.agregarUsuario(usuario)){
-            JOptionPane.showMessageDialog(null, "Hey, ya hay un usuario con ese identificacion");
-        }
-        else{
-            biblioteca.agregarUsuario(usuario);
-        }
+        biblioteca.agregarUsuario(usuario);
     }
 
     /**
@@ -230,12 +220,7 @@ public class Bibliotecario extends Empleado{
      * BOTON REGISTRAR LIBRO
      */
     public void agregarLibro(Libro libro) {
-        if(!biblioteca.agregarLibro(libro)){
-            JOptionPane.showMessageDialog(null, "Hey, ya hay un libro con ese titulo");
-        }
-        else{
-            biblioteca.agregarLibro(libro);
-        }
+        biblioteca.agregarLibro(libro);
     }
 
 

@@ -14,23 +14,26 @@ public class Docente extends Usuario implements GestionPrestamo{
         this.listPrestamos = new ArrayList<>();
         assert credencial != null;
     }
-    @Override
-    public boolean puedePrestarCantidadLibros(Prestamo prestamo) {
-        boolean centinela = true;
-        int prestamosSinDevolver = 0;
-        for (Prestamo p : listPrestamos) {
-            if (p.isDevuelto()) {
-                prestamosSinDevolver++;
-            }
-        }
-        if(prestamosSinDevolver > 10){
-            centinela = false;
-        }
-        return centinela;
-    }
+   
     @Override
     public void agregarPrestamo(Prestamo prestamo) {
         listPrestamos.add(prestamo);
+    }
+     
+    @Override 
+    public boolean puedePrestarCantidadlibros(Prestamo prestamo){
+        boolean centinela = true; 
+        int prestamosSinDevolver=0
+        for(Prestamo p: listPrestamos){
+            if(!p.isDevuelto()){
+                prestamosSinDevolver++;
+            }
+        }
+        if (prestamosSinDevolver>10){
+            centinela=false;
+        }
+        return centinela;
+        
     }
 
     public List<Prestamo> getListPrestamos() {
