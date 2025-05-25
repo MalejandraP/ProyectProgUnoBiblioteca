@@ -148,15 +148,15 @@ public class Bibliotecario extends Empleado{
     /**
      *  Metodo para calcular la deuda en total de la lista de prestamos que tiene cada usuario
      */
-    public double calculaDeudaTotal(String identificacion){
+    public double calculaDeudaTotal(String identificacion, LocalDate fechaDevolucion){
         double deudaTotal = 0;
         Usuario u = biblioteca.buscarUsuario(identificacion);
         if(u instanceof Estudiante){
             Estudiante e = (Estudiante) u;
             List<Prestamo> prestamosDeU = e.getListPrestamos();
             for (Prestamo p : prestamosDeU){
-                if (p.getDeuda() >0){
-                    deudaTotal += p.getDeuda();
+                if (calcularDeuda(p.getId(), fechaDevolucion) >0){
+                    deudaTotal += calcularDeuda(p.getId(), fechaDevolucion);
                 }
             }
         }
@@ -164,8 +164,8 @@ public class Bibliotecario extends Empleado{
             Docente d = (Docente) u;
             List<Prestamo> prestamosDeU = d.getListPrestamos();
             for (Prestamo p : prestamosDeU){
-                if (p.getDeuda() >0){
-                    deudaTotal += p.getDeuda();
+                if (calcularDeuda(p.getId(), fechaDevolucion) >0){
+                    deudaTotal += calcularDeuda(p.getId(), fechaDevolucion);
                 }
             }
         }
