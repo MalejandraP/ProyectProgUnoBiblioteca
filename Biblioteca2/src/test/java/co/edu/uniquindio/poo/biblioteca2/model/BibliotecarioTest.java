@@ -12,6 +12,13 @@ class BibliotecarioTest {
         LibroFisico libro8= new LibroFisico("Orgullo y prejuicio", "Romance", "1989", true, EstadoLibro.PRESTADO, "Los tres editores", "2548", 350);
         biblioteca.agregarLibro(libro7);
         biblioteca.agregarLibro(libro8);
+        libro7.prestar;
+        libro8.prestar;
+        libro7.devolver;
+        libro8.devolver; 
+        libro8.prestar;
+        List<Libro> listEsperados = List.of(libro8);
+        assertIterableEquals(listEsperado,biblioteca.reporteLibroMasSolicitado());
     }
 
     @Test
