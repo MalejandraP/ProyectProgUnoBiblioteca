@@ -36,6 +36,7 @@ public class Biblioteca {
         this.listLibros = new ArrayList<>();
         this.listUsuarios = new ArrayList<>();
         this.listEmpleados = new ArrayList<>();
+
     }
     public void actualizarListaLibros(){
         listLibros.clear();
@@ -52,43 +53,59 @@ public class Biblioteca {
      * @param titulo
      * @param identificacion
      * @param fecha
-     * @param fechaMaximaDevolucion
      * @param id
      */
-    public void prestarLibro(String titulo, String identificacion, LocalDate fecha, LocalDate fechaMaximaDevolucion,  String id) {
+    public Prestamo prestarLibro(String titulo, String identificacion, LocalDate fecha,  String id) {
         Usuario usuario = buscarUsuario(identificacion);
+
+        if (usuario == null) {
+            System.out.println("Usuario no encontrado.");
+        } else {
+            System.out.println("Usuario encontrado: " + usuario.getNombre()); // o cualquier info útil
+        }
+
+        System.out.println("Buscando libro con título: [" + titulo + "]");
         Libro libro = buscarLibro(titulo);
+        if (libro == null) {
+            System.out.println("Libro no encontrado.");
+        } else {
+            System.out.println("Libro encontrado: " + libro.getTitulo());
+        }
+
         if (usuario == null || libro == null) {
-            System.out.println("Usuario o libro no encontrado.");
-            return;
+            return null;
         }
         if (!libro.isDisponible()) {
             System.out.println("El libro no está disponible.");
-            return;
-        } 
+            return null;
+        }
+        LocalDate fechaMaximaDevolucion = null;
         Prestamo prestamo = new Prestamo(fecha, fechaMaximaDevolucion, id, libro, usuario);
-        agregarPrestamo(prestamo);
         if (usuario instanceof Docente) {
             Docente docente = (Docente) usuario;
             if (!docente.puedePrestarCantidadLibros(prestamo)) {
                 System.out.println("El docente tiene libros pendientes de devolver.");
-                return;
+                return null;
             }
             docente.agregarPrestamo(prestamo);
+            prestamo.setFechaMaximaDevolucion(prestamo.calcularFechaMaximaDevolucion(docente));
             libro.prestar();
             System.out.println("Préstamo realizado con éxito para docente.");
         } else if (usuario instanceof Estudiante) {
             Estudiante estudiante = (Estudiante) usuario;
             if (!estudiante.puedePrestarCantidadLibros(prestamo)) {
                 System.out.println("El estudiante tiene libros pendientes de devolver.");
-                return;
+                return null;
             }
             estudiante.agregarPrestamo(prestamo);
+            prestamo.setFechaMaximaDevolucion(prestamo.calcularFechaMaximaDevolucion(estudiante));
             libro.prestar();
             System.out.println("Préstamo realizado con éxito para estudiante.");
         } else {
             System.out.println("El tipo de usuario no es válido.");
         }
+        agregarPrestamo(prestamo);
+        return prestamo;
     }
 
     /**
@@ -99,12 +116,12 @@ public class Biblioteca {
     public boolean agregarEmpleado(Empleado empleado) {
         boolean centinela = false;
         if (!verificarEmpleado(empleado.getIdentificacion())){
-            if (empleado.getCargo() == Cargo.BIBLIOTECARIO) {
+            if (empleado instanceof Bibliotecario && empleado.getCargo() == Cargo.BIBLIOTECARIO) {
                 listBibliotecarios.add((Bibliotecario)empleado);
                 listEmpleados.add(empleado);
                 centinela = true;
             }
-            if (empleado.getCargo() == Cargo.ADMINISTRADOR) {
+            if (empleado instanceof Administrador && empleado.getCargo() == Cargo.ADMINISTRADOR) {
                 listAdministradores.add((Administrador) empleado);
                 listEmpleados.add(empleado);
                 centinela = true;
@@ -162,6 +179,11 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo para buscar un libro en la lista mediante su titulo.
+     * @param titulo Titulo del libro que se desea buscar.
+     * @return El libro encontrado, o null si no existe.
+     */
 
     public Libro buscarLibro(String titulo) {
         for (Libro libro : listLibrosDigitales) {
@@ -176,6 +198,12 @@ public class Biblioteca {
         }
         return null;
     }
+
+    /**
+     * Metodo para buscar un usuario en la lista a traves de su identificacion.
+     * @param identificacion Identificacion del usuario que se desea buscar.
+     * @return El usuario encontrado, o null si no existe.
+     */
 
     public Usuario buscarUsuario(String identificacion) {
         for (Estudiante estudiante : listEstudiantes) {
@@ -195,6 +223,12 @@ public class Biblioteca {
         return null;
     }
 
+    /**
+     * Metodo para buscar un empleado en la lista a traves de su identificacion.
+     * @param identificacion Identificacion del empleado que se desea buscar.
+     * @return El empleado encontrado, o null si no existe.
+     */
+
     public Empleado buscarEmpleado(String identificacion) {
         for (Bibliotecario b : listBibliotecarios) {
             if (b.getIdentificacion().equalsIgnoreCase(identificacion)) {
@@ -209,14 +243,26 @@ public class Biblioteca {
         return null;
     }
 
+    /**
+     * Metodo para buscar un prestamo en la lista utilizando un ID especifico.
+     * @param id ID del prestamo que se desea buscar.
+     * @return El prestamo encontrado, o null si no existe.
+     */
+
     public Prestamo buscarPrestamo(String id){
         for (Prestamo p : listPrestamos) {
-            if (p.getId().equalsIgnoreCase(id)) {
+            if (p.getId().equals(id)) {
                 return p;
             }
         }
         return null;
     }
+
+    /**
+     * Metodo para eliminar un libro de la lista mediante su titulo.
+     * @param titulo Titulo del libro que se desea eliminar.
+     * @return True si el libro fue eliminado exitosamente, false si no se encontro el libro.
+     */
 
     public boolean eliminarLibro(String titulo) {
         boolean libroEliminado = false;
@@ -239,7 +285,11 @@ public class Biblioteca {
         return libroEliminado;
     }
 
-
+    /**
+     * Metodo para eliminar un empleado de la lista utilizando su identificacion.
+     * @param identificacion Identificacion del empleado que se desea eliminar.
+     * @return True si el empleado fue eliminado exitosamente, false si no se encontro el empleado.
+     */
     public boolean eliminarEmpleado(String identificacion) {
         boolean centinela = false;
         for (Bibliotecario b : listBibliotecarios) {
@@ -263,6 +313,11 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano que permite eliminar a un usuario de la lista
+     * @param identificacion
+     * @return
+     */
     public boolean eliminarUsuario(String identificacion) {
         boolean centinela = false;
         for (Estudiante e : listEstudiantes) {
@@ -291,6 +346,12 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano que permite actualizar la informacion de un usuario
+     * @param identificacion
+     * @param actualizado
+     * @return
+     */
     public boolean actualizarUsuario(String identificacion, Usuario actualizado) {
         boolean centinela = false;
         for (Estudiante e : listEstudiantes) {
@@ -337,6 +398,12 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano que permite actualizar la info de un empleado
+     * @param identificacion
+     * @param actualizado
+     * @return
+     */
     public boolean actualizarEmpleado(String identificacion, Empleado actualizado) {
         boolean centinela = false;
         for (Bibliotecario b : listBibliotecarios) {
@@ -368,6 +435,12 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano que permite modificar la informacion de un libro
+     * @param titulo
+     * @param actualizado
+     * @return
+     */
     public boolean actualizarLibro(String titulo, Libro actualizado){
         boolean centinela= false;
         for (LibroDigital libroDigital : listLibrosDigitales) {
@@ -403,6 +476,12 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano que permite modificar la informacion de un prestamo
+     * @param id
+     * @param actualizado
+     * @return
+     */
     public boolean actualizarPrestamo(String id, Prestamo actualizado) {
         boolean centinela = false;
         for (Prestamo prestamo : listPrestamos) {
@@ -420,6 +499,11 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano que elimina un prestamo de la lista
+     * @param id
+     * @return
+     */
     public boolean eliminarPrestamo(String id) {
         boolean centinela = false;
         for (Prestamo p: listPrestamos) {
@@ -432,11 +516,16 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano que agrega un prestamo nuevo a la lista
+     * @param prestamo
+     * @return
+     */
     public boolean agregarPrestamo(Prestamo prestamo) {
         boolean centinela = false;
         for (Prestamo p: listPrestamos) {
             if (!verificarPrestamo(prestamo.getId())) {
-                listPrestamos.add(p);
+                listPrestamos.add(prestamo);
                 centinela = true;
                 break;
             }
@@ -444,6 +533,11 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano para verificar si un prestamo ya esta en la lista
+     * @param id
+     * @return
+     */
     public boolean verificarPrestamo(String id) {
         boolean centinela = false;
         for (Prestamo p : listPrestamos) {
@@ -455,6 +549,11 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano para verificar si un usuario ya esta en la lista
+     * @param identificacion
+     * @return
+     */
     public boolean verificarUsuario(String identificacion) {
         boolean centinela = false;
         for (Estudiante e : listEstudiantes) {
@@ -477,6 +576,11 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano para saber si un empleado ya está en la lista
+     * @param identificacion
+     * @return
+     */
     public boolean verificarEmpleado(String identificacion) {
         boolean centinela = false;
         for (Bibliotecario b : listBibliotecarios) {
@@ -494,6 +598,11 @@ public class Biblioteca {
         return centinela;
     }
 
+    /**
+     * Metodo booleano para verificar si un libro ya está en la lista
+     * @param titulo
+     * @return
+     */
     public boolean verificarLibro(String titulo) {
         boolean centinela = false;
         for (LibroDigital libroDigital : listLibrosDigitales) {
@@ -614,6 +723,15 @@ public class Biblioteca {
     public void setListEmpleados(List<Empleado> listEmpleados) {
         this.listEmpleados = listEmpleados;
     }
+
+    public int getEmpleadoEliminados() {
+        return empleadoEliminados;
+    }
+
+    public void setEmpleadoEliminados(int empleadoEliminados) {
+        this.empleadoEliminados = empleadoEliminados;
+    }
+
 
     /**
      * To String

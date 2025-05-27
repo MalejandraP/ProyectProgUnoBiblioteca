@@ -25,6 +25,6 @@
       <Button fx:id="btnRealizarPrestamo" layoutX="327.0" layoutY="226.0" mnemonicParsing="false" onAction="#onRealizarPrestamo" text="Realizar Préstamo" />
       <Button fx:id="btnDevolverLibro" layoutX="150.0" layoutY="226.0" mnemonicParsing="false" onAction="#onDevolverLibro" text="Devolver Libro" />
       <Button fx:id="btnUsuariosDeudores" layoutX="127.0" layoutY="294.0" mnemonicParsing="false" onAction="#onUsuariosDeudores" text="Usuarios Deudores" />
-      <Button fx:id="btnLibrosMasSolicitados" layoutX="327.0" layoutY="300.0" mnemonicParsing="false" text="Libros Más Solicitados" />
+      <Button fx:id="btnLibrosMasSolicitados" layoutX="327.0" layoutY="300.0" mnemonicParsing="false" onAction="#onLibrosSolicitados" text="Libros Más Solicitados" />
    </children>
 </AnchorPane>

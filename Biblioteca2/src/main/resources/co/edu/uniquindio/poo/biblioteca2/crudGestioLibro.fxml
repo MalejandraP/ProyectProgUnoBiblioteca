@@ -9,12 +9,12 @@
       <Button fx:id="btnRegresar" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
       <TableView fx:id="tblGestionLibro" layoutX="37.0" layoutY="136.0" prefHeight="265.0" prefWidth="450.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Titulo" />
-          <TableColumn prefWidth="75.0" text="Autor" />
-            <TableColumn prefWidth="75.0" text="Genero" />
-            <TableColumn prefWidth="75.0" text="Año Publicacion" />
-            <TableColumn prefWidth="75.0" text="¿Es Fisico?" />
-            <TableColumn prefWidth="75.0" text="Estado" />
+          <TableColumn fx:id="tbcTitulo" prefWidth="75.0" text="Titulo" />
+          <TableColumn fx:id="tbcAutor" prefWidth="75.0" text="Autor" />
+            <TableColumn fx:id="tbcGenero" prefWidth="75.0" text="Genero" />
+            <TableColumn fx:id="tbcAnioPubli" prefWidth="75.0" text="Año Publicacion" />
+            <TableColumn fx:id="tbcEsFisico" prefWidth="75.0" text="¿Es Fisico?" />
+            <TableColumn fx:id="tbcEstado" prefWidth="75.0" text="Estado" />
         </columns>
       </TableView>
       <Label layoutX="660.0" layoutY="205.0" text="Autor:">

@@ -19,7 +19,6 @@ public class GestionEmpleadoController {
         this.biblioteca = biblioteca;
     }
 
-
     public void regresar(){
         app.openCrudAdministrador(administrador);
     }
@@ -49,8 +48,6 @@ public class GestionEmpleadoController {
         }
         return centinela;
     }
-
-
 
     public void setApp(App app) {
         this.app = app;

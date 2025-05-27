@@ -1,5 +1,7 @@
 package co.edu.uniquindio.poo.biblioteca2.model;
 
+import co.edu.uniquindio.poo.biblioteca2.App;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -33,39 +35,35 @@ public class Bibliotecario extends Empleado{
         this.listLibros = listLibros;
     }
 
-
-
-
     /**
      * Metodo para devolver un libro
-     * HECHO
      * BOTON DEVOLVER LIBRO
      * @param id
      * @param fechaDevolucion
      * @return
      */
-    public boolean devolverLibro(String id, LocalDate fechaDevolucion){
+    public boolean devolverLibro(String identificacion,String id, LocalDate fechaDevolucion){
         boolean devolucion = false;
-        if (pagarDeuda(id,fechaDevolucion)){
-            prestamo.devolverLibro();// ESTE SI O SI VA, CAMBIA EL BOOLEANO DE PRESTAMO DEVUELTO = TRU Y DE LIBRO LLAMA DEVOLVER CAMCIA ESTADO A DISPONIBLE
+        if (pagarDeuda(identificacion,id,fechaDevolucion)){
+            Prestamo prestamo = App.biblioteca.buscarPrestamo(id);
+            prestamo.devolverLibro();
             devolucion = true;
 
         }
         return devolucion;
     }
-
     /**
      * Metodo para pagar la deuda del préstamo, dejarla en 0
-     * HECHO
      * BOTON PAGAR
      * @param id
      * @param fechaDevolucion
      * @return
      */
-    public boolean pagarDeuda(String id, LocalDate fechaDevolucion){
+    public boolean pagarDeuda(String identificacion,String id, LocalDate fechaDevolucion){
         boolean centinela = false;
         int deuda = 0;
-        if(calcularDeuda(id, fechaDevolucion) > 0){
+        Prestamo prestamo = App.biblioteca.buscarPrestamo(id);
+        if(calcularDeuda(identificacion,id, fechaDevolucion) > 0){
             prestamo.setDeuda(deuda);
            centinela = true;
         }
@@ -73,42 +71,69 @@ public class Bibliotecario extends Empleado{
     }
     /**
      * Metodo para calcular la deuda contando los días desde que se vencio el plazo de devolucion hasta la fecha de devolucion
-     * HECHO
      * BOTON CARGAR
      * @param fechaDevolucion
      * @return
      */
-    public double calcularDeuda(String id, LocalDate fechaDevolucion){
+    public double calcularDeuda(String identificacion,String id, LocalDate fechaDevolucion){
         double deudaDiaria = 2000;
         double deudaFinal = 0;
-        LocalDate fechaMaximaDev = prestamo.getFechaMaximaDevolucion();
-        if(biblioteca.verificarPrestamo(id)){
-            prestamo.setFechaDevolucion(fechaDevolucion);
-            if (fechaMaximaDev.isBefore(fechaDevolucion)) {
-                deudaFinal = deudaDiaria * ChronoUnit.DAYS.between(fechaMaximaDev, fechaDevolucion);
-                prestamo.setDeuda(deudaFinal);
+        Prestamo p = App.biblioteca.buscarPrestamo(id);
+        Usuario usuario = App.biblioteca.buscarUsuario(identificacion);
+        System.out.println("Prestamo encontrado: " + p);
+        System.out.println("Usuario encontrado: " + usuario);
+        System.out.println("Fecha devolución ingresada: " + fechaDevolucion);
+        if(usuario instanceof Estudiante){
+            Estudiante e = (Estudiante) usuario;
+            if(e.verificarPrestamo(id)){
+                if (p.calcularFechaMaximaDevolucion(usuario).isBefore(fechaDevolucion)) {
+                    deudaFinal = deudaDiaria * ChronoUnit.DAYS.between(p.calcularFechaMaximaDevolucion(usuario), fechaDevolucion);
+                    p.setDeuda(deudaFinal);
+                }
+                else{
+                    System.out.println("No hay deuda: la fecha de devolución no supera la fecha máxima.");
+                }
+            }
+        }
+        if(usuario instanceof Docente){
+            Docente d = (Docente) usuario;
+            if(d.verificarPrestamo(id)){
+                if (p.calcularFechaMaximaDevolucion(usuario).isBefore(fechaDevolucion)) {
+                    deudaFinal = deudaDiaria * ChronoUnit.DAYS.between(p.calcularFechaMaximaDevolucion(usuario), fechaDevolucion);
+                    p.setDeuda(deudaFinal);
+                }
+                else{
+                    System.out.println("No hay deuda: la fecha de devolución no supera la fecha máxima.");
+                }
             }
         }
         return deudaFinal;
     }
-    public boolean puedePrestarDeuda(String id, LocalDate fechaDevolucion){
+
+    /**
+     * Metodo para saber si al usuario se le puede realizar el prestamo teniendo en cuenta su deuda y la cantidad de libros que le faltan por entregar
+     * @param identificacion
+     * @param fechaDevolucion
+     * @return
+     */
+    public boolean puedePrestarDeuda(String identificacion, LocalDate fechaDevolucion){
         boolean centinela= true;
-        Usuario usuario= buscarUsuario(id);
-        List<Prestamo> listPrestamosU= usuario.getlistPrestamos;
-        for(Prestamo p: listPrestamosU){
-        if (usuario instanceof Estudiante){
+        Usuario usuario= App.biblioteca.buscarUsuario(identificacion);;
+        if (usuario instanceof Estudiante) {
             Estudiante estudiante = (Estudiante) usuario;
-            if(!estudiante.puedePrestarCantidadLibros(p) || calcularDeudaTotal(id)>0){
-                centinela= false;
+            for(Prestamo p : estudiante.getListPrestamos()){
+                if (!estudiante.puedePrestarCantidadLibros(p) || calcularDeudaTotal(identificacion, fechaDevolucion) > 0) {
+                    centinela = false;
+                }
+            }
+        } else if (usuario instanceof Docente) {
+            Docente docente = (Docente) usuario;
+            for (Prestamo p : docente.getListPrestamos()) {
+                if (!docente.puedePrestarCantidadLibros(p) || calcularDeudaTotal(identificacion, fechaDevolucion) > 0) {
+                    centinela = false;
+                }
             }
         }
-        else if(usuario instanceof Docente){
-            Docente docente = (Docente) usuario;
-            if(!docente.puedePrestarCantidadLibros(p) || calcularDeudaTotal(id)>0){
-                centinela= false;
-        }
-        }
-            
         return centinela;
     }
 
@@ -119,14 +144,14 @@ public class Bibliotecario extends Empleado{
     public List<Libro> reporteLibroMasSolicitado(){
         List<Libro> librosMasSolicitados = new ArrayList<>();
         int maxCantidadVecesPrestado=0;
-        for (int i=0; i<biblioteca.getListLibros().size();i++){
-           if(biblioteca.getListLibros().get(i).getSolicitudes()>maxCantidadVecesPrestado){
-               maxCantidadVecesPrestado=biblioteca.getListLibros().get(i).getSolicitudes();
+        for (int i=0; i<App.biblioteca.getListLibros().size();i++){
+           if(App.biblioteca.getListLibros().get(i).getSolicitudes()>maxCantidadVecesPrestado){
+               maxCantidadVecesPrestado=App.biblioteca.getListLibros().get(i).getSolicitudes();
            }
         }
-        for(int i=0;i<biblioteca.getListLibros().size();i++){
-            if(biblioteca.getListLibros().get(i).getSolicitudes()==maxCantidadVecesPrestado){
-                librosMasSolicitados.add(biblioteca.getListLibros().get(i));
+        for(int i=0;i<App.biblioteca.getListLibros().size();i++){
+            if(App.biblioteca.getListLibros().get(i).getSolicitudes()==maxCantidadVecesPrestado){
+                librosMasSolicitados.add(App.biblioteca.getListLibros().get(i));
             }
         }
         return librosMasSolicitados;
@@ -148,15 +173,15 @@ public class Bibliotecario extends Empleado{
     /**
      *  Metodo para calcular la deuda en total de la lista de prestamos que tiene cada usuario
      */
-    public double calculaDeudaTotal(String identificacion, LocalDate fechaDevolucion){
+    public double calcularDeudaTotal(String identificacion, LocalDate fechaDevolucion){
         double deudaTotal = 0;
-        Usuario u = biblioteca.buscarUsuario(identificacion);
+        Usuario u = App.biblioteca.buscarUsuario(identificacion);
         if(u instanceof Estudiante){
             Estudiante e = (Estudiante) u;
             List<Prestamo> prestamosDeU = e.getListPrestamos();
             for (Prestamo p : prestamosDeU){
-                if (calcularDeuda(p.getId(), fechaDevolucion) >0){
-                    deudaTotal += calcularDeuda(p.getId(), fechaDevolucion);
+                if (calcularDeuda(identificacion, p.getId(), fechaDevolucion) >0){
+                    deudaTotal += calcularDeuda(identificacion, p.getId(), fechaDevolucion);
                 }
             }
         }
@@ -164,8 +189,8 @@ public class Bibliotecario extends Empleado{
             Docente d = (Docente) u;
             List<Prestamo> prestamosDeU = d.getListPrestamos();
             for (Prestamo p : prestamosDeU){
-                if (calcularDeuda(p.getId(), fechaDevolucion) >0){
-                    deudaTotal += calcularDeuda(p.getId(), fechaDevolucion);
+                if (calcularDeuda(identificacion,p .getId(), fechaDevolucion) >0){
+                    deudaTotal += calcularDeuda(identificacion, p.getId(), fechaDevolucion);
                 }
             }
         }
@@ -180,7 +205,7 @@ public class Bibliotecario extends Empleado{
         List<Usuario> listUsuariosDeudores = new ArrayList<>();
         for (Usuario u : listUsuarios){
             String identificacion = u.getIdentificacion();
-            if(calculaDeudaTotal(identificacion, fechaDevolucion) > 0){
+            if(calcularDeudaTotal(identificacion, fechaDevolucion) > 0){
                 listUsuariosDeudores.add(u);
             }
         }
@@ -193,7 +218,7 @@ public class Bibliotecario extends Empleado{
      * BOTON REGISTRAR USUARIO
      */
     public void agregarUsuario(Usuario usuario) {
-        biblioteca.agregarUsuario(usuario);
+        App.biblioteca.agregarUsuario(usuario);
     }
 
     /**
@@ -202,7 +227,7 @@ public class Bibliotecario extends Empleado{
      * @param identificacion
      */
     public void eliminarUsuario(String identificacion) {
-        biblioteca.eliminarUsuario(identificacion);
+        App.biblioteca.eliminarUsuario(identificacion);
     }
 
     /**
@@ -212,7 +237,7 @@ public class Bibliotecario extends Empleado{
      * @param actualizado
      */
     public void actualizarUsuario(String identificacion, Usuario actualizado) {
-        biblioteca.actualizarUsuario(identificacion, actualizado);
+        App.biblioteca.actualizarUsuario(identificacion, actualizado);
     }
 
     /**
@@ -220,7 +245,7 @@ public class Bibliotecario extends Empleado{
      * BOTON REGISTRAR LIBRO
      */
     public void agregarLibro(Libro libro) {
-        biblioteca.agregarLibro(libro);
+        App.biblioteca.agregarLibro(libro);
     }
 
 
@@ -231,7 +256,7 @@ public class Bibliotecario extends Empleado{
      * @param actualizado
      */
     public void actualizarLibro(String titulo, Libro actualizado) {
-        biblioteca.actualizarLibro(titulo, actualizado);
+        App.biblioteca.actualizarLibro(titulo, actualizado);
     }
     /**
      * Metodo para eliminar un libro de la lista
@@ -239,7 +264,7 @@ public class Bibliotecario extends Empleado{
      * @param titulo
      */
     public void eliminarLibro(String titulo){
-        biblioteca.eliminarLibro(titulo);
+        App.biblioteca.eliminarLibro(titulo);
     }
     /**
      * Metodo para eliminar un prestamo de la lista
@@ -247,7 +272,7 @@ public class Bibliotecario extends Empleado{
      * @param id
      */
     public void eliminarPrestamo(String id){
-        biblioteca.eliminarPrestamo(id);
+        App.biblioteca.eliminarPrestamo(id);
     }
     /**
      * Metodo para actualizar la informacion de un prestamo ya existente
@@ -256,7 +281,7 @@ public class Bibliotecario extends Empleado{
      * @param prestamo
      */
     public void actualizarPrestamo(String id, Prestamo prestamo){
-        biblioteca.actualizarPrestamo(id, prestamo);
+        App.biblioteca.actualizarPrestamo(id, prestamo);
     }
 
     /**
@@ -264,18 +289,20 @@ public class Bibliotecario extends Empleado{
      * @param titulo
      * @param identificacion
      * @param fecha
-     * @param fechaMaximaDevolucion
-     * @param fechaDevolucion
-     * @param deuda
-     * @param devuelto
      * @param id
      */
-    public void prestarLibro(String titulo, String identificacion, LocalDate fecha, LocalDate fechaMaximaDevolucion, LocalDate fechaDevolucion, double deuda, boolean devuelto, String id) {
-        biblioteca.prestarLibro(titulo, identificacion, fecha, fechaMaximaDevolucion, id);
+    public Prestamo prestarLibro(String titulo, String identificacion, LocalDate fecha, String id) {
+        if(!puedePrestarDeuda(identificacion, fecha)){
+            System.out.println("No se puede realizar el prestamo, ya que tiene deuda o no tiene suficientes libros para entregar");
+            return null;
+        }
+        else{
+            return App.biblioteca.prestarLibro(titulo, identificacion, fecha, id);
+        }
     }
 
     public List<Prestamo> getListPrestamos() {
-        return listPrestamos;
+        return App.biblioteca.getListPrestamos();
     }
 
     public void setListPrestamos(List<Prestamo> listPrestamos) {
@@ -315,7 +342,7 @@ public class Bibliotecario extends Empleado{
     }
 
     public List<Libro> getListLibros() {
-        return listLibros;
+        return App.biblioteca.getListLibros();
     }
 
     public void setListLibros(List<Libro> listLibros) {

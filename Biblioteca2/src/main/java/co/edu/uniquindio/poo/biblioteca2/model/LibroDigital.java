@@ -18,4 +18,10 @@ public class LibroDigital extends Libro {
         this.enlaceDescarga = enlaceDescarga;
     }
 
+    @Override
+    public String toString() {
+        return "LibroDigital{" +
+                "enlaceDescarga='" + enlaceDescarga + '\'' +
+                '}';
+    }
 }

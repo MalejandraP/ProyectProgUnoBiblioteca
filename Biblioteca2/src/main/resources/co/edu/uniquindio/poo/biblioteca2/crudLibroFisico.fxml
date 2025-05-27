@@ -6,83 +6,82 @@
 
 <AnchorPane prefHeight="483.0" prefWidth="626.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.viewController.LibroFisicoViewController">
    <children>
-      <Label fx:id="lblTituloCambio" layoutX="120.0" layoutY="48.0" text="Titulo">
+      <Label fx:id="lblTituloCambio" layoutX="271.0" layoutY="53.0" text="Titulo">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font></Label>
-      <Label layoutX="341.0" layoutY="56.0" text="Autor:">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="341.0" layoutY="103.0" text="Genero:">
+      <Label layoutX="74.0" layoutY="126.0" text="Autor:">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="344.0" layoutY="146.0" text="Anio Publicacion:">
+      <Label layoutX="69.0" layoutY="187.0" text="Genero:">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="344.0" layoutY="197.0" text="Solicitudes:">
+      <Label layoutX="320.0" layoutY="126.0" text="Anio Publicacion:">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="343.0" layoutY="243.0" text="Estado:">
+      <Label layoutX="338.0" layoutY="187.0" text="Solicitudes:">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="341.0" layoutY="291.0" text="Ubicacion:">
+      <Label layoutX="71.0" layoutY="253.0" text="Estado:">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="339.0" layoutY="346.0" text="Editorial:">
+      <Label layoutX="338.0" layoutY="253.0" text="Ubicacion:">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="343.0" layoutY="395.0" text="Numero de Paginas:">
+      <Label layoutX="67.0" layoutY="316.0" text="Editorial:">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="lblAutorCambio" layoutX="405.0" layoutY="56.0" text="Label">
+      <Label layoutX="301.0" layoutY="316.0" text="Numero de Paginas:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="lblAutorCambio" layoutX="159.0" layoutY="126.0" text="Label">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblGeneroCambio" layoutX="405.0" layoutY="103.0" text="Label">
+      <Label fx:id="lblGeneroCambio" layoutX="159.0" layoutY="187.0" text="Label">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblAnioPubliCambio" layoutX="468.0" layoutY="146.0" text="Label">
+      <Label fx:id="lblAnioPubliCambio" layoutX="452.0" layoutY="126.0" text="Label">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblSolicitudesCambio" layoutX="429.0" layoutY="197.0" text="Label">
+      <Label fx:id="lblSolicitudesCambio" layoutX="452.0" layoutY="187.0" text="Label">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblEstadoCambio" layoutX="398.0" layoutY="243.0" text="Label">
+      <Label fx:id="lblEstadoCambio" layoutX="159.0" layoutY="253.0" text="Label">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblUbicacionCambio" layoutX="422.0" layoutY="291.0" text="Label">
+      <Label fx:id="lblUbicacionCambio" layoutX="452.0" layoutY="253.0" text="Label">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblEditorialCambio" layoutX="405.0" layoutY="346.0" text="Label">
+      <Label fx:id="lblEditorialCambio" layoutX="159.0" layoutY="316.0" text="Label">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblNumPaginasCambio" layoutX="485.0" layoutY="395.0" text="Label">
+      <Label fx:id="lblNumPaginasCambio" layoutX="452.0" layoutY="316.0" text="Label">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Separator layoutX="297.0" layoutY="23.0" orientation="VERTICAL" prefHeight="434.0" prefWidth="2.0" style="-fx-background-color: c6b399;" />
       <Button fx:id="btnRegresar" layoutX="30.0" layoutY="432.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
    </children>
 </AnchorPane>

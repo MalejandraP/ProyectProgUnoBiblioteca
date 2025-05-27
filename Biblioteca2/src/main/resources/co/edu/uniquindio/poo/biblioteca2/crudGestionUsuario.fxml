@@ -7,15 +7,15 @@
 <AnchorPane prefHeight="502.0" prefWidth="1046.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.viewController.GestionUsuarioViewController">
    <children>
       <Button fx:id="btnRegresar" layoutX="37.0" layoutY="33.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
-      <TableView layoutX="37.0" layoutY="82.0" prefHeight="344.0" prefWidth="526.0">
+      <TableView fx:id="tbvUsuarios" layoutX="37.0" layoutY="82.0" prefHeight="344.0" prefWidth="526.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Nombre" />
-          <TableColumn prefWidth="75.0" text="Id" />
-            <TableColumn prefWidth="75.0" text="Genero" />
-            <TableColumn prefWidth="75.0" text="Correo" />
-            <TableColumn prefWidth="75.0" text="Teléfono" />
-            <TableColumn prefWidth="75.0" text="Edad" />
-            <TableColumn prefWidth="75.0" text="Tipo" />
+          <TableColumn fx:id="tbcNombre" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="tbcId" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="tbcGenero" prefWidth="75.0" text="Genero" />
+            <TableColumn fx:id="tbcCorreo" prefWidth="75.0" text="Correo" />
+            <TableColumn fx:id="tbcTelefono" prefWidth="75.0" text="Teléfono" />
+            <TableColumn fx:id="tbcEdad" prefWidth="75.0" text="Edad" />
+            <TableColumn fx:id="tbcTipo" prefWidth="75.0" text="Tipo" />
         </columns>
       </TableView>
       <Button fx:id="btnAgregar" layoutX="947.0" layoutY="183.0" mnemonicParsing="false" onAction="#onAgregar" text="Agregar" />

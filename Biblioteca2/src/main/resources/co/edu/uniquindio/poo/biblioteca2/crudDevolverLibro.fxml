@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.viewController.DevolverLibroViewController">
+   <children>
+      <Button fx:id="btnRegresar" layoutX="37.0" layoutY="28.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
+      <DatePicker fx:id="dpFecha" layoutX="158.0" layoutY="100.0" prefHeight="25.0" prefWidth="140.0" />
+      <Button fx:id="btnDevolver" layoutX="154.0" layoutY="452.0" mnemonicParsing="false" onAction="#onDevolver" text="Devolver Libro" />
+      <Button fx:id="btnCargar" layoutX="175.0" layoutY="250.0" mnemonicParsing="false" onAction="#onCargar" text="Cargar" />
+      <Button fx:id="btnPagar" layoutX="178.0" layoutY="360.0" mnemonicParsing="false" onAction="#onPagar" text="Pagar" />
+      <Label fx:id="lblDeudaCambio" layoutX="200.0" layoutY="311.0" text="DEUDA" />
+      <Label layoutX="85.0" layoutY="311.0" text="Su deuda es de:" />
+      <Label layoutX="50.0" layoutY="202.0" text="Id del Usuario:" />
+      <TextField fx:id="txtIdUsuario" layoutX="158.0" layoutY="198.0" prefHeight="25.0" prefWidth="140.0" />
+      <TextField fx:id="txtIdPrestamo" layoutX="158.0" layoutY="150.0" prefHeight="25.0" prefWidth="140.0" />
+      <Label layoutX="97.0" layoutY="104.0" text="Fecha:" />
+      <Label layoutX="45.0" layoutY="154.0" text="Id del Préstamo:" />
+      <Label layoutX="143.0" layoutY="41.0" text="Devolver Libro">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

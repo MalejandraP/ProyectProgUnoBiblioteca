@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.biblioteca2.viewController.RealizarPrestamoViewController">
+   <children>
+      <Button fx:id="btnRegresar" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onAction="#onRegresar" text="Regresar" />
+      <DatePicker fx:id="dpFecha" layoutX="178.0" layoutY="103.0" prefHeight="25.0" prefWidth="150.0" promptText="Seleccione la fecha " />
+      <Label layoutX="135.0" layoutY="55.0" text="Realizar Prestamo">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="txtIdPrestamo" layoutX="206.0" layoutY="161.0" prefHeight="25.0" prefWidth="95.0" />
+      <TextField fx:id="txtIdUsuario" layoutX="206.0" layoutY="223.0" prefHeight="25.0" prefWidth="95.0" />
+      <Label layoutX="130.0" layoutY="107.0" text="Fecha:" />
+      <Label layoutX="50.0" layoutY="165.0" text="Ingrese el Id del préstamo:" />
+      <Label layoutX="55.0" layoutY="227.0" text="Ingrese el Id del Usuario:" />
+      <Label layoutX="98.0" layoutY="283.0" text="Libro a prestar:" />
+      <Button fx:id="btnCargar" layoutX="64.0" layoutY="409.0" mnemonicParsing="false" onAction="#onCargar" text="Cargar" />
+      <Label layoutX="147.0" layoutY="388.0" text="Tiene hasta la fecha:" />
+      <Label layoutX="143.0" layoutY="448.0" text="para devolver el libro." />
+      <Label fx:id="lblFechaCambio" layoutX="182.0" layoutY="421.0" text="FECHA" />
+      <ComboBox fx:id="chbTituloLibro" layoutX="202.0" layoutY="279.0" prefHeight="25.0" prefWidth="131.0" />
+      <Button fx:id="btnRegistrar" layoutX="148.0" layoutY="335.0" mnemonicParsing="false" onAction="#onRegistrar" text="Registrar Prestamo" />
+   </children>
+</AnchorPane>

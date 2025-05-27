@@ -6,6 +6,7 @@ import co.edu.uniquindio.poo.biblioteca2.model.Usuario;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -23,12 +24,11 @@ public class Prestamo {
     /**
      * Metodo constructor de la clase préstamo
      * @param fecha
-     * @param fechaMaximaDevolucion
      * @param id
      * @param libro
      * @param usuario
      */
-    public Prestamo(LocalDate fecha, LocalDate fechaMaximaDevolucion, String id,Libro libro, Usuario usuario) {
+    public Prestamo(LocalDate fecha,LocalDate fechaMaximaDevolucion, String id,Libro libro, Usuario usuario) {
         this.fecha = fecha;
         this.fechaMaximaDevolucion = fechaMaximaDevolucion;
         this.fechaDevolucion = null;
@@ -45,7 +45,7 @@ public class Prestamo {
      * @param usuario
      * @return
      */
-    public LocalDate calcularFechaMaimaDevolucion(Usuario usuario){
+    public LocalDate calcularFechaMaximaDevolucion(Usuario usuario){
         LocalDate fechaMAX = fechaMaximaDevolucion;
         if(usuario instanceof Docente){
             fechaMAX = fecha.plusDays(20);
@@ -146,5 +146,17 @@ public class Prestamo {
                 ", libro=" + libro +
                 ", usuario=" + usuario +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Prestamo prestamo = (Prestamo) o;
+        return Objects.equals(fecha, prestamo.fecha) && Objects.equals(fechaMaximaDevolucion, prestamo.fechaMaximaDevolucion) && Objects.equals(id, prestamo.id) && Objects.equals(libro, prestamo.libro) && Objects.equals(usuario, prestamo.usuario);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fecha, fechaMaximaDevolucion, id, libro, usuario);
     }
 }

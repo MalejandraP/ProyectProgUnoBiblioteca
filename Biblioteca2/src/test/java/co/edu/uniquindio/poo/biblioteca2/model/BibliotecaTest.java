@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo.biblioteca2.model;
 
+import co.edu.uniquindio.poo.biblioteca2.App;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -12,44 +13,43 @@ public class BibliotecaTest {
     void prestarLibro() {
         Biblioteca biblioteca=new Biblioteca("La Alejandría", "Grecia");
         Docente docente2=new Docente("Carlos", "524", "masculino","carlos@", "314", 35, Tipo.DOCENTE, "547");
-        LibroDigital libro3= new LibroDigital("Hamlet", "William Shakespaeare", "Drama", "1560", false,  EstadoLibro.DISPONIBLE,"https.hamlet.com");
+        LibroFisico libro2= new LibroFisico("Cien años de soledad", "Gabo", "historia", "1980", true, EstadoLibro.DISPONIBLE, "librosSuperPro", "carrera 8", 350);
+        Prestamo prestamo= new Prestamo(LocalDate.of(2025,5,6), LocalDate.of(2025,5,26),"63975", libro2, docente2);
         biblioteca.agregarUsuario(docente2);
-        biblioteca.agregarLibro(libro3);
-        Prestamo prestamo1= new Prestamo(LocalDate.of(2025,5,15), "4895", libro3, docente2);
-        biblioteca.agregarPrestamo(prestamo1);
-        
-        
-        
+        biblioteca.agregarLibro(libro2);
+        assertEquals(prestamo, biblioteca.prestarLibro(libro2.getTitulo(), docente2.getIdentificacion(), LocalDate.of(2025,5,6), "63975"));
+
+
     }
     @Test
     void agregarEmpleado() {
         Biblioteca biblioteca= new Biblioteca("La Nacional","kenedy");
         Empleado bibliotecario1= new Bibliotecario("Rafael", "875", "masculino", "rafael@2", "3198", 24, 300.0, Cargo.BIBLIOTECARIO);
         assertTrue(biblioteca.agregarEmpleado(bibliotecario1));
-        
+
     }
     @Test
     void agregarUsuario() {
         Biblioteca biblioteca= new Biblioteca("Howard","Clementina");
-        Docente docente2=new Docente("Carlos", "524", "masculino","carlos@", "314", 35, tipo.DOCENTE, "547");
-        assertTrue(biblioteca.agregarUsuario(docente2);
+        Docente docente2=new Docente("Carlos", "524", "masculino","carlos@", "314", 35, Tipo.DOCENTE, "547");
+        assertTrue(biblioteca.agregarUsuario(docente2));
     }
     @Test
     void agregarLibro() {
         Biblioteca biblioteca= new Biblioteca("Harvard","La Gran Manzana");
-        LibroFisico libro2= new LibroFisico("Cien años de soledad", "Gabo", "historia", "1980", true, EstadoLibro.DISPONIBLE, "librosSuperPro", "carrera 8", "350");
+        LibroFisico libro2= new LibroFisico("Cien años de soledad", "Gabo", "historia", "1980", true, EstadoLibro.DISPONIBLE, "librosSuperPro", "carrera 8", 350);
         biblioteca.agregarLibro(libro2);
         assertFalse(biblioteca.agregarLibro(libro2));
-        
+
     }
     @Test
     void buscarLibro() {
-        Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO")
+        Biblioteca biblioteca= new Biblioteca("UQ","bARRIO ALTO");
         LibroDigital libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", false, EstadoLibro.DISPONIBLE,"https.com" );
         biblioteca.agregarLibro(libro1);
-        assertNotNull(libro1, biblioteca.buscarLibro(libro1.getTitulo()));
+        assertNotNull(biblioteca.buscarLibro(libro1.getTitulo()));
     }
-    
+
     @Test
     void actualizarUsuario() {
         Biblioteca biblioteca= new Biblioteca("AsombrososLibros","El barrio");
@@ -69,7 +69,7 @@ public class BibliotecaTest {
         Biblioteca biblioteca= new Biblioteca("universidad de los andes","Laureles");
         Empleado bibliotecario4= new Bibliotecario("Alejo", "167", "masculino", "alejo@2", "3125", 18, 2.5, Cargo.BIBLIOTECARIO);
         biblioteca.agregarEmpleado(bibliotecario4);
-        assertNotNull(bibliotecario4, biblioteca.buscarEmpleado(bibliotecario4.getIdentificacion()));
+        assertNotNull(biblioteca.buscarEmpleado(bibliotecario4.getIdentificacion()));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class BibliotecaTest {
         LibroDigital libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", false, EstadoLibro.DISPONIBLE,"https.com" );
         biblioteca.agregarUsuario(estudiante1);
         biblioteca.agregarLibro(libro1);
-        Prestamo prestamo1= new Prestamo(LocalDate.of(2025,5,2), "123", libro1, estudiante1);
+        Prestamo prestamo1= new Prestamo(LocalDate.of(2025,6,6),LocalDate.of(2025,6,16),"222", libro1, estudiante1);
         biblioteca.agregarPrestamo(prestamo1);
         assertEquals(prestamo1, biblioteca.buscarPrestamo(prestamo1.getId()));
     }
@@ -123,7 +123,7 @@ public class BibliotecaTest {
         LibroDigital libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", false, EstadoLibro.DISPONIBLE,"https.com" );
         biblioteca.agregarUsuario(estudiante2);
         biblioteca.agregarLibro(libro1);
-        Prestamo prestamo4= new Prestamo(LocalDate.of(2025,15,05), "458", libro1, estudiante2);
+        Prestamo prestamo4= new Prestamo(LocalDate.of(2025,12,5), LocalDate.of(2025,12,15),"458", libro1, estudiante2);
         assertFalse(biblioteca.actualizarPrestamo(prestamo4.getId(), prestamo4));
 
     }
@@ -135,7 +135,7 @@ public class BibliotecaTest {
         LibroDigital libro3= new LibroDigital("Hamlet", "William Shakespaeare", "Drama", "1560", false, EstadoLibro.DISPONIBLE,"https.hamlet.com");
         biblioteca.agregarUsuario(docente2);
         biblioteca.agregarLibro(libro3);
-        Prestamo prestamo3= new Prestamo(LocalDate.of(2025,15,05), "854", libro3, docente2);
+        Prestamo prestamo3= new Prestamo(LocalDate.of(2025,12,5), LocalDate.of(2025, 12,25),"854", libro3, docente2);
         assertFalse(biblioteca.eliminarPrestamo(prestamo3.getId()));
     }
 
@@ -146,7 +146,7 @@ public class BibliotecaTest {
         LibroDigital libro1= new LibroDigital("Narraciones extraordinarias", "Edgar Allan Poe", "Suspenso", "1800", false, EstadoLibro.DISPONIBLE,"https.com" );
         biblioteca.agregarUsuario(estudiante1);
         biblioteca.agregarLibro(libro1);
-        Prestamo prestamo2= new Prestamo(LocalDate.of(2025,15,05) "253", libro1, estudiante1);
+        Prestamo prestamo2= new Prestamo(LocalDate.of(2025,12,5),LocalDate.of(2025,12,15), "253", libro1, estudiante1);
         biblioteca.agregarPrestamo(prestamo2);
         assertFalse(biblioteca.agregarPrestamo(prestamo2));
 
@@ -159,7 +159,7 @@ public class BibliotecaTest {
         LibroFisico libro5= new LibroFisico("Piel Desnuda", "Paty", "reflexion", "2010", true ,EstadoLibro.DISPONIBLE, "librosSuperPro", "carrera 9", 300);
         biblioteca.agregarUsuario(estudiante3);
         biblioteca.agregarLibro(libro5);
-        Prestamo prestamo5= new Prestamo(LocalDate.of(2024,5,24) "2569", libro5, estudiante3);
+        Prestamo prestamo5= new Prestamo(LocalDate.of(2024,5,24), LocalDate.of(2024,6,3),"2569", libro5, estudiante3);
         assertFalse(biblioteca.verificarPrestamo(prestamo5.getId()));
 
     }

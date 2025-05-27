@@ -2,6 +2,8 @@ package co.edu.uniquindio.poo.biblioteca2.viewController;
 
 import co.edu.uniquindio.poo.biblioteca2.App;
 import co.edu.uniquindio.poo.biblioteca2.controller.GestionEmpleadoController;
+import co.edu.uniquindio.poo.biblioteca2.model.Administrador;
+import co.edu.uniquindio.poo.biblioteca2.model.Bibliotecario;
 import co.edu.uniquindio.poo.biblioteca2.model.Cargo;
 import co.edu.uniquindio.poo.biblioteca2.model.Empleado;
 import javafx.beans.property.SimpleObjectProperty;
@@ -98,12 +100,10 @@ public class GestionEmpleadoViewController {
     private void agregarEmpleado() {
         try {
             Empleado empleado = buildEmpleado();
-
             if (empleado == null) {
                 mostrarAlerta("Error", "Por favor completa todos los campos.");
                 return;
             }
-
             if (gestionEmpleadoController.agregarEmpleado(empleado)) {
                 listEmpleados.add(empleado); // se agrega a la lista visible en la tabla
                 limpiarCamposEmpleados();
@@ -122,25 +122,6 @@ public class GestionEmpleadoViewController {
         alert.showAndWait();
     }
 
-
-
-
-
-
-
-    private Empleado buildEmpleado() {
-        String nombre = txtNombre.getText();
-        String identificacion = txtIdentificacion.getText();
-        String genero = txtGenero.getText();
-        String correo = txtCorreo.getText();
-        String telefono = txtTelefono.getText();
-        int edad = Integer.parseInt(txtEdad.getText());
-        double sueldo = Double.parseDouble(txtSueldo.getText());
-        Cargo cargo = cbCargo.getValue();
-
-        Empleado empleado = new Empleado(nombre, identificacion, genero, correo, telefono, edad, sueldo, cargo);
-        return empleado;
-    }
     @FXML
     private URL location;
 
@@ -185,6 +166,29 @@ public class GestionEmpleadoViewController {
 
     }
 
+    private Empleado buildEmpleado() {
+        String nombre = txtNombre.getText();
+        String identificacion = txtIdentificacion.getText().trim();
+        String genero = txtGenero.getText().trim();
+        String correo = txtCorreo.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        int edad = Integer.parseInt(txtEdad.getText().trim());
+        double sueldo = Double.parseDouble(txtSueldo.getText().trim());
+        Cargo cargo = cbCargo.getValue();
+        Empleado empleado;
+        switch (cargo) {
+            case ADMINISTRADOR:
+                empleado = new Administrador(nombre, identificacion, genero, correo, telefono, edad, sueldo, cargo);
+                break;
+            case BIBLIOTECARIO:
+                empleado = new Bibliotecario(nombre, identificacion, genero, correo, telefono, edad, sueldo, cargo);
+                break;
+            default:
+                empleado = new Empleado(nombre, identificacion, genero, correo, telefono, edad, sueldo, cargo);
+                break;
+        }
+        return empleado;
+    }
 
 
     public void setGestionEmpleadoController(GestionEmpleadoController controller) {
@@ -219,9 +223,6 @@ public class GestionEmpleadoViewController {
     }
 
 
-    private void initDataBinding() {
-
-    }
 
     private void limpiarCamposEmpleados() {
         txtIdentificacion.clear();

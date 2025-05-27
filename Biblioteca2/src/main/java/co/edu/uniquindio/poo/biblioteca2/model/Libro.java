@@ -22,7 +22,7 @@ public class Libro {
     }
 
     /**
-     * Metodo booleano para saber si el estado de el libro es disponible
+     * Metodo booleano para saber si el estado del libro es disponible
      * @return
      */
     public boolean isDisponible() {
@@ -36,7 +36,7 @@ public class Libro {
      * Metodo que convierte el estado del libro a prestado
      */
     public void prestar() {
-        estado.equals(EstadoLibro.PRESTADO);
+        estado = EstadoLibro.PRESTADO;
         solicitudes++;
     }
 
@@ -44,7 +44,7 @@ public class Libro {
      * Metodo que convierte el estado de libro en disponible
      */
     public void devolver() {
-        estado.equals(EstadoLibro.DISPONIBLE);
+        estado = EstadoLibro.DISPONIBLE;
     }
 
     public EstadoLibro getEstado() {
@@ -99,4 +99,16 @@ public class Libro {
         this.esFisico = esFisico;
     }
 
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", genero='" + genero + '\'' +
+                ", anioPublicacion='" + anioPublicacion + '\'' +
+                ", solicitudes=" + solicitudes +
+                ", esFisico=" + esFisico +
+                ", estado=" + estado +
+                '}';
+    }
 }

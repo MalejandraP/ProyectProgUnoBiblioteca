@@ -37,5 +37,12 @@ public class LibroFisico extends Libro{
         this.numeroPaginas = numeroPaginas;
     }
 
-
+    @Override
+    public String toString() {
+        return "LibroFisico{" +
+                "editorial='" + editorial + '\'' +
+                ", ubicacionBiblioteca='" + ubicacionBiblioteca + '\'' +
+                ", numeroPaginas=" + numeroPaginas +
+                '}';
+    }
 }
